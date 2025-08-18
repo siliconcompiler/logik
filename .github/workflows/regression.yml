@@ -20,7 +20,7 @@ jobs:
       GIT_TOKEN: ${{ secrets.ZA_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup permissions
         run: |
