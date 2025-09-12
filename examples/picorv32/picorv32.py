@@ -1,4 +1,4 @@
-# picorv32.py
+#!/usr/bin/env python3
 
 from logik.flows import logik_flow
 from logiklib.zeroasic.z1062 import z1062
