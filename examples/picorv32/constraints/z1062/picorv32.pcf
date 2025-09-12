@@ -1,0 +1,6 @@
+{
+        "clk" : {
+              "pin": "gpio_in_clk[0]",
+              "direction": "input"
+        }            
+}
