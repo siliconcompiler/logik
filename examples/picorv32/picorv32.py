@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import os
+
 from logik.flows import logik_flow
 from logiklib.zeroasic.z1062 import z1062
 
@@ -34,11 +36,17 @@ def build():
     # Set the top module to {design_top_module}
     chip.set('option', 'entrypoint', f'{design_top_module}')
 
+    # register path to setup files
+    chip.register_source(name='picorv32-setup',
+                         path=os.path.dirname(__file__))
+    
     # Define timing constraints
-    chip.input(f'{design_name}.sdc')
+    chip.input(f'{design_name}.sdc', package='picorv32-setup')
+
+    chip.add('tool', 'yosys', 'task', 'syn', 'var', 'synth_fpga_opt_mode', 'delay')
 
     # Define pin constraints
-    chip.input(f'constraints/z1062/{design_name}.pcf')
+    chip.input(f'constraints/z1062/{design_name}.pcf', package='picorv32-setup')
 
     chip.set('option', 'quiet', True)
 
