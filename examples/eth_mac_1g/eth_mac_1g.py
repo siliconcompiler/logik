@@ -3,56 +3,61 @@
 # This is the logik run script for demonstrating RTL-to-bitstream
 # with Alex Forencich's 1G Ethernet MAC
 
-from siliconcompiler import Chip
+import siliconcompiler
 from logik.flows import logik_flow
-from logiklib.zeroasic.z1000 import z1000
+from logik.demo import z1000
 
 
 def build():
-    chip = Chip('eth_mac_1g_wrapper')
-
-    # Load target settings
-    chip.use(logik_flow)
-    chip.use(z1000)
-    chip.set('option', 'flow', 'logik_flow')
-
-    # Set default part name
-    chip.set('fpga', 'partname', 'z1000')
+    design = siliconcompiler.Design('eth_mac_1g_wrapper')
 
     # Define source files from verilog-ethernet repo
 
     # First we need to register the verilog-ethernet repo
     # as a package
-    chip.register_source(
-        name='verilog-ethernet',
-        path='git+https://github.com/alexforencich/verilog-ethernet.git',
-        ref='77320a9471d19c7dd383914bc049e02d9f4f1ffb')
+    design.set_dataroot(
+        'verilog-ethernet',
+        'git+https://github.com/alexforencich/verilog-ethernet.git',
+        '77320a9471d19c7dd383914bc049e02d9f4f1ffb')
 
     # Then we can pull in the specific RTL we need from that
     # repository -- Silicon Compiler will download and cache the files
     # for us
-    for source_file in ('eth_mac_1g.v',
-                        'axis_gmii_rx.v',
-                        'axis_gmii_tx.v',
-                        'lfsr.v'):
-        chip.input(f'rtl/{source_file}', package='verilog-ethernet')
+    with design.active_dataroot('verilog-ethernet'):
+        for source_file in ('eth_mac_1g.v',
+                            'axis_gmii_rx.v',
+                            'axis_gmii_tx.v',
+                            'lfsr.v'):
+            design.add_file(f'rtl/{source_file}', fileset='rtl')
 
     # Add in our top-level wrapper, stored locally
-    chip.register_source('ethmac_example', __file__)
-    chip.input('eth_mac_1g_wrapper.v', package='ethmac_example')
+    design.set_dataroot('ethmac_example', __file__)
+    with design.active_dataroot('ethmac_example'):
+        design.add_file('eth_mac_1g_wrapper.v', fileset='rtl')
+        design.set_topmodule("eth_mac_1g_wrapper", fileset="rtl")
 
-    # Add timing constraints
-    chip.input('eth_mac_1g.sdc', package='ethmac_example')
+        # Add timing constraints
+        design.add_file('eth_mac_1g.sdc', fileset='sdc')
 
-    # Define pin constraints
-    chip.input(f"constraints/{chip.get('fpga', 'partname')}/pin_constraints.pcf",
-               package='ethmac_example')
+        # Define pin constraints
+        design.add_file("constraints/z1000/pin_constraints.pcf",
+            fileset='pcf')
 
+    project = siliconcompiler.FPGAProject(design)
+
+    project.add_fileset('rtl')
+    project.add_fileset('sdc')
+
+    fpga = z1000.z1000()
+
+    project.set_fpga(fpga)
+
+    project.set_flow(logik_flow.LogikFlow())
     # Customize steps for this design
-    chip.set('option', 'quiet', True)
+    project.set('option', 'quiet', True)
 
-    chip.run()
-    chip.summary()
+    project.run()
+    project.summary()
 
 
 if __name__ == '__main__':

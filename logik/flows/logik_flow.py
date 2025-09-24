@@ -1,38 +1,40 @@
 # Copyright 2024 Zero ASIC Corporation
 # Licensed under the MIT License (see LICENSE for details)
 
-from siliconcompiler import Chip
+from siliconcompiler import FPGA
 from siliconcompiler.flows import fpgaflow
 
 from logik.tools.fasm_to_bitstream import bitstream_finish
 
 
-############################################################################
-# DOCS
-############################################################################
-def make_docs(chip):
-    return setup()
+class LogikFlow(fpgaflow.FPGAVPRFlow):
+    '''An open-source FPGA flow using Yosys, VPR, and GenFasm.
 
+    This flow is designed for academic and research FPGAs, utilizing VPR
+    (Versatile Place and Route) for placement and routing.
 
-############################################################################
-# Flowgraph Setup
-############################################################################
-def setup(flowname='logik_flow'):
+    The flow consists of the following steps:
+
+    * **elaborate**: Elaborate the RTL design from sources.
+    * **synthesis**: Synthesize the elaborated design into a netlist using Yosys.
+    * **place**: Place the netlist components onto the FPGA architecture using VPR.
+    * **route**: Route the connections between placed components using VPR.
+    * **bitstream**: Generate the final bitstream using GenFasm.
+    * **convert_bitstream**: Format bitstream from fasm to bits.
     '''
-    '''
+    def __init__(self, name: str = "logik_flow"):
+        """
+        Initializes the FPGAVPRFlow.
 
-    flow = fpgaflow.setup(
-        flowname=flowname,
-        fpgaflow_type='vpr')
+        Args:
+            name (str): The name of the flow.
+        """
+        super().__init__(name)
 
-    # Add bitstream generation task
-    flow.node(flowname, 'convert_bitstream', bitstream_finish)
-    flow.edge(flowname, 'bitstream', 'convert_bitstream')
-
-    return flow
+        self.node("convert_bitstream", bitstream_finish.BitstreamFinishTask())
+        self.edge("bitstream", "convert_bitstream")
 
 
-##################################################
+# ##################################################
 if __name__ == "__main__":
-    flow = make_docs(Chip('<flow>'))
-    flow.write_flowgraph(f"{flow.top()}.png", flow=flow.top(), landscape=True)
+    LogikFlow().write_flowgraph(f"{LogikFlow().name}.png")

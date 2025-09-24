@@ -1,0 +1,20 @@
+{
+        "version": 1,
+        "partname": "K4_N8_6x6",
+        "lut_size": 4,
+        "flipflops": {
+                "features": [],
+                "models": {},
+                "legalize_list": ["\$_DFF_P_"],
+                "techmap": "None"
+        },
+        "brams": {
+                "memory_libmap": [] ,
+                "techmap": [] 
+        },
+        "dsps": {
+                "family": "" ,
+                "techmap": "" ,
+                "techmap_parameters": {} 
+        }
+}

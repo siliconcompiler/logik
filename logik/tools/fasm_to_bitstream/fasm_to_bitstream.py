@@ -279,6 +279,7 @@ def generate_bitstream_from_fasm(address_map,
                 bitstream[x][y].append([0] * len(address_map[x][y][address]))
 
     for fasm_feature in fasm_data:
+        if fasm_feature not in feature_index: continue  # TODO update device files before merging
         x_i = feature_index[fasm_feature]['x']
         y_i = feature_index[fasm_feature]['y']
         addr_i = feature_index[fasm_feature]['address']

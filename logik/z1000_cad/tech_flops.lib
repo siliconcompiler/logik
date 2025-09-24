@@ -1,0 +1,1380 @@
+/**
+ * @file
+ * @author  FPGA Architect
+ * @date    May 2025
+ * @brief A skeleton liberty library used to import the timing connectivity of a
+ *        post-synthesis netlist (from VTR) into OpenSTA.
+ *
+ * This file contains just enough information to allow OpenSTA to use a provided
+ * SDF file for timing analysis of the netlist.
+ */
+
+library (TechFlops) {
+
+    /* General Attributes */
+    delay_model             		: table_lookup;
+
+    /* Units Attributes */
+    time_unit               		: "1ns";
+
+    /* Threshold Definitions */
+    /* These are the default values according to the Liberty User Manual */
+    slew_lower_threshold_pct_fall 	: 20.00 ;
+    slew_lower_threshold_pct_rise 	: 20.00 ;
+    slew_upper_threshold_pct_fall 	: 80.00 ;
+    slew_upper_threshold_pct_rise 	: 80.00 ;
+    input_threshold_pct_fall      	: 50.00 ;
+    input_threshold_pct_rise      	: 50.00 ;
+    output_threshold_pct_fall     	: 50.00 ;
+    output_threshold_pct_rise     	: 50.00 ;
+
+    /* D-flip-flop module. Modelled after the timing model of a DFF */
+    cell (dff) {
+        ff (IQ, IQN) {
+            next_state: "D";
+            clocked_on: "clk";
+        }
+
+        pin (D) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (clk) {
+            direction: input;
+            clock: true;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: min_pulse_width;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (Q) {
+            direction: output;
+            function: "IQ";
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: rising_edge;
+                timing_sense: non_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                cell_rise(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+                rise_transition(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+    }
+
+    /* D-flip-flop with active-low, asynchronous reset module. Modelled after the timing model of a DFFR */
+    cell (dffr) {
+        ff (IQ, IQN) {
+            next_state: "D";
+            clocked_on: "clk";
+            clear: "!R";
+        }
+
+        pin (D) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+                when: "R";
+                sdf_cond: "R === 1'b1";
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+                when: "R";
+                sdf_cond: "R === 1'b1";
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (R) {
+            direction: input;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: recovery_rising;
+
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: removal_rising;
+
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "R";
+                timing_type: min_pulse_width;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (clk) {
+            direction: input;
+            clock: true;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: min_pulse_width;
+                when: "R";
+                sdf_cond: "R === 1'b1";
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (Q) {
+            direction: output;
+            function: "IQ";
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: rising_edge;
+                timing_sense: non_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                cell_rise(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+                rise_transition(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "R";
+                timing_type: clear;
+                when: "!clk & !D";
+                sdf_cond: "(clk == 1'b0) && (D == 1'b0)";
+                timing_sense: positive_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "R";
+                timing_type: clear;
+                when: "!clk & D";
+                sdf_cond: "(clk == 1'b0) && (D == 1'b1)";
+                timing_sense: positive_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "R";
+                timing_type: clear;
+                when: "clk & !D";
+                sdf_cond: "(clk == 1'b1) && (D == 1'b0)";
+                timing_sense: positive_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "R";
+                timing_type: clear;
+                when: "clk & D";
+                sdf_cond: "(clk == 1'b1) && (D == 1'b1)";
+                timing_sense: positive_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+    }
+
+    /* D-flip-flop with enable module. Modelled after the timing model of sky130_fd_sc_hd__edfxbp_1 */
+    cell (dffe) {
+        ff (IQ, IQN) {
+            next_state: "(E & D) | (!E & IQ)";
+            clocked_on: "clk";
+        }
+
+        pin (D) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (E) {
+            direction: input;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (clk) {
+            direction: input;
+            clock: true;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: min_pulse_width;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (Q) {
+            direction: output;
+            function: "IQ";
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: rising_edge;
+                timing_sense: non_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                cell_rise(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+                rise_transition(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+    }
+
+    /* D-flip-flop with enable and reset module. Modelled after the dffe and dffr models above. */
+    cell (dffer) {
+        ff (IQ, IQN) {
+            next_state: "(E & D) | (!E & IQ)";
+            clocked_on: "clk";
+            clear: "!R";
+        }
+
+        pin (D) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+                when: "R";
+                sdf_cond: "R === 1'b1";
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+                when: "R";
+                sdf_cond: "R === 1'b1";
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (E) {
+            direction: input;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+                when: "R";
+                sdf_cond: "R === 1'b1";
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+                when: "R";
+                sdf_cond: "R === 1'b1";
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (R) {
+            direction: input;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: recovery_rising;
+
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: removal_rising;
+
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "R";
+                timing_type: min_pulse_width;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (clk) {
+            direction: input;
+            clock: true;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: min_pulse_width;
+                when: "R";
+                sdf_cond: "R === 1'b1";
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (Q) {
+            direction: output;
+            function: "IQ";
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: rising_edge;
+                timing_sense: non_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                cell_rise(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+                rise_transition(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "R";
+                timing_type: clear;
+                when: "!clk & !D";
+                sdf_cond: "(clk == 1'b0) && (D == 1'b0)";
+                timing_sense: positive_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "R";
+                timing_type: clear;
+                when: "!clk & D";
+                sdf_cond: "(clk == 1'b0) && (D == 1'b1)";
+                timing_sense: positive_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "R";
+                timing_type: clear;
+                when: "clk & !D";
+                sdf_cond: "(clk == 1'b1) && (D == 1'b0)";
+                timing_sense: positive_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "R";
+                timing_type: clear;
+                when: "clk & D";
+                sdf_cond: "(clk == 1'b1) && (D == 1'b1)";
+                timing_sense: positive_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+    }
+
+    /* D-flip-flop with synchronous set high. */
+    cell (dffh) {
+        ff (IQ, IQN) {
+            /* If H is low, store high; if H is high, store D. */
+            next_state: "!H | (H & D)";
+            clocked_on: "clk";
+        }
+
+        pin (D) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (H) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (clk) {
+            direction: input;
+            clock: true;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: min_pulse_width;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (Q) {
+            direction: output;
+            function: "IQ";
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: rising_edge;
+                timing_sense: non_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                cell_rise(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+                rise_transition(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+    }
+
+    /* D-flip-flop with synchronous set high and enable. */
+    cell (dffeh) {
+        ff (IQ, IQN) {
+            /* If H is low, store high.*/
+            /* If H is high: If E is high, store D, if E is low, hold value. */
+            next_state: "!H | (H & ((E & D) | (!E & IQ)))";
+            clocked_on: "clk";
+        }
+
+        pin (D) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (H) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (E) {
+            direction: input;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (clk) {
+            direction: input;
+            clock: true;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: min_pulse_width;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (Q) {
+            direction: output;
+            function: "IQ";
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: rising_edge;
+                timing_sense: non_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                cell_rise(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+                rise_transition(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+    }
+
+    /* D-flip-flop with synchronous set low. */
+    cell (dffl) {
+        ff (IQ, IQN) {
+            /* If L is low, store low; if L is high, store D. */
+            /* This can be written as "(!L & 0) | (L & D)", simplified below */
+            next_state: "L & D";
+            clocked_on: "clk";
+        }
+
+        pin (D) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (L) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (clk) {
+            direction: input;
+            clock: true;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: min_pulse_width;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (Q) {
+            direction: output;
+            function: "IQ";
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: rising_edge;
+                timing_sense: non_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                cell_rise(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+                rise_transition(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+    }
+
+    /* D-flip-flop with synchronous set low and enable. */
+    cell (dffel) {
+        ff (IQ, IQN) {
+            /* If L is low, store low.*/
+            /* If L is high: If E is high, store D, if E is low, hold value. */
+            /* This can be written as "(!L & 0) | (L & ((E & D) | (!E & IQ)))", simplified below */
+            next_state: "L & ((E & D) | (!E & IQ))";
+            clocked_on: "clk";
+        }
+
+        pin (D) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (L) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (E) {
+            direction: input;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (clk) {
+            direction: input;
+            clock: true;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: min_pulse_width;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (Q) {
+            direction: output;
+            function: "IQ";
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: rising_edge;
+                timing_sense: non_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                cell_rise(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+                rise_transition(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+    }
+
+    /* D-flip-flop with synchronous set high and synchronous set low. */
+    /*  NOTE: L has priority over H */
+    cell (dffhl) {
+        ff (IQ, IQN) {
+            /* If L is low, store low; if L is high and H is low, store high; */
+            /* if L is high and H is high, store D. */
+            /* This can be written as "(!L & 0) | (L & (!H | (H & D)))", simplified below */
+            next_state: "(L & !H) | (L & H & D)";
+            clocked_on: "clk";
+        }
+
+        pin (D) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (H) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (L) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (clk) {
+            direction: input;
+            clock: true;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: min_pulse_width;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (Q) {
+            direction: output;
+            function: "IQ";
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: rising_edge;
+                timing_sense: non_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                cell_rise(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+                rise_transition(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+    }
+
+    /* D-flip-flop with synchronous set high and synchronous set low and enable. */
+    /*  NOTE: L has priority over H, H has priority over enable. */
+    cell (dffehl) {
+        ff (IQ, IQN) {
+            /* If L is low, store low; if L is high and H is low, store high; */
+            /* If L is high and H is high: If E is high, store D, if E is low, hold value. */
+            /* This can be written as "(!L & 0) | (L & (!H | (H & ((E & D) | (!E & IQ)))))", simplified below */
+            next_state: "(L & !H) | (L & H & ((E & D) | (!E & IQ)))"
+            clocked_on: "clk";
+        }
+
+        pin (D) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (H) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (L) {
+            direction: input;
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (E) {
+            direction: input;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: hold_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+
+            timing() {
+                related_pin: "clk";
+                timing_type: setup_rising;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (clk) {
+            direction: input;
+            clock: true;
+
+            timing() {
+                related_pin: "clk";
+                timing_type: min_pulse_width;
+
+                fall_constraint(scalar) {
+                    values("0.0");
+                }
+                rise_constraint(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+
+        pin (Q) {
+            direction: output;
+            function: "IQ";
+            
+            timing() {
+                related_pin: "clk";
+                timing_type: rising_edge;
+                timing_sense: non_unate;
+
+                cell_fall(scalar) {
+                    values("0.0");
+                }
+                cell_rise(scalar) {
+                    values("0.0");
+                }
+                fall_transition(scalar) {
+                    values("0.0");
+                }
+                rise_transition(scalar) {
+                    values("0.0");
+                }
+            }
+        }
+    }
+}

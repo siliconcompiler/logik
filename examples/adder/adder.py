@@ -3,39 +3,48 @@
 # Copyright 2024 Zero ASIC Corporation
 # Licensed under the MIT License (see LICENSE for details)
 
-from siliconcompiler import Chip
+import siliconcompiler
+
 from logik.flows import logik_flow
-from logiklib.demo.K4_N8_6x6 import K4_N8_6x6
+
+from logik.demo import K4_N8_6x6
 
 
 def hello_adder():
+    # 1. Create a Design object to hold source files and constraints.
+    design = siliconcompiler.Design('adder')
 
-    # Create compilation object
-    chip = Chip('adder')
-    chip.create_cmdline(switchlist=['-remote'])
+    design.add_file('adder.v', fileset="rtl")
+    # design.add_file('adder.pcf', fileset="pcf")  # TODO regen pcf
+    design.set_topmodule('adder', fileset="rtl")
 
-    # Specify design sources
-    chip.input('adder.v')
+    # 2. Create an FPGAProject object
+    project = siliconcompiler.FPGAProject(design)
 
-    # Specify pin constraints
-    chip.input('adder.pcf')
+    project.add_fileset('rtl')
+    # project.add_fileset('pcf')
 
-    # Compiler options
-    chip.set('option', 'quiet', True)
+    # 2. Create an FPGA object and associate the design with it.
+    fpga = K4_N8_6x6.K4_N8_6x6()
 
-    # Select target fpga
-    chip.set('fpga', 'partname', 'K4_N8_6x6')
+    # Enable command-line processing for options like -remote.
+    # fpga.create_cmdline(switchlist=['-remote'])  # TODO
 
-    # Load target settings
-    chip.set('option', 'flow', 'logik_flow')
-    chip.use(logik_flow)
-    chip.use(K4_N8_6x6)
+    # 3. Load the specific FPGA part, which also sets the default flow and libraries.
+    project.set_fpga(fpga)
 
-    # Run compiler
-    chip.run()
+    # 4. Use the specific flow for this build.
+    # Note: K4_N8_6x6 might already load a flow, but it's good practice to specify it.
+    project.set_flow(logik_flow.LogikFlow())
 
-    # Display compiler results
-    chip.summary()
+    # # 5. Set any general options.
+    project.set('option', 'quiet', True)
+
+    # 6. Run the compilation.
+    project.run()
+
+    # 7. Display the results summary.
+    project.summary()
 
 
 if __name__ == "__main__":

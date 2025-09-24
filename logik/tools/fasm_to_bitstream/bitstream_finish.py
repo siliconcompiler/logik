@@ -3,47 +3,57 @@
 
 from logik.tools.fasm_to_bitstream import \
     fasm_to_bitstream as fasm_utils
-from siliconcompiler.tools._common import get_tool_task
-from siliconcompiler import SiliconCompilerError
+
+from siliconcompiler.tool import TaskSchema
+# TODO task schema I guess?
 
 
-def setup(chip):
-    '''
-    Perform bitstream finishing
-    '''
+class BitstreamFinishTask(TaskSchema):
+    def __init__(self):
+        super().__init__()
 
-    tool = 'fasm_to_bitstream'
-    step = chip.get('arg', 'step')
-    index = chip.get('arg', 'index')
-    _, task = get_tool_task(chip, step, index)
+    def tool(self):
+        return "fasm_to_bitstream"
 
-    part_name = chip.get('fpga', 'partname')
+    def task(self):
+        return "bitstream_finish"
 
-    # Require that a lut size is set for FPGA scripts.
-    chip.add('tool', tool, 'task', task, 'require',
-             ",".join(['fpga', part_name, 'file', 'bitstream_map']),
-             step=step, index=index)
+    def setup(self):
+        '''
+        Perform bitstream finishing
+        '''
+        super().setup()
 
-    chip.add('tool', tool, 'task', task, 'input', f'{chip.top()}.fasm', step=step, index=index)
-    chip.add('tool', tool, 'task', task, 'output', f'{chip.top()}.json', step=step, index=index)
-    chip.add('tool', tool, 'task', task, 'output', f'{chip.top()}.bin', step=step, index=index)
+        # part_name = 'Z1000'  # self.project.get('fpga', 'partname')
 
+        fpga = self.project.get('fpga', 'device')
+        fpga_obj = self.project.get('library', fpga, field='schema')
+        # dd_required_key(...) you can pass in an object the fpga and then finish the keypath
+        # but this will need to be "tool", "???", "bitstream_map"
+        self.add_required_key(fpga_obj, "tool", 'convert_bitstream', 'bitstream_map')
 
-def run(chip):
-    part_name = chip.get('fpga', 'partname')
+        self.add_input_file(ext="fasm")
+        self.add_output_file(ext="json")
+        self.add_output_file(ext="bin")
 
-    topmodule = chip.top()
-    fasm_file = f"inputs/{topmodule}.fasm"
+    def run(self):
+        fpga = self.project.get('fpga', 'device')
+        fpga_obj = self.project.get('library', fpga, field='schema')
 
-    bitstream_maps = chip.find_files('fpga', part_name, 'file', 'bitstream_map')
+        # part_name = self.get('fpga', 'partname')
 
-    if len(bitstream_maps) == 1:
-        json_outfile = f"outputs/{topmodule}.json"
-        binary_outfile = f"outputs/{topmodule}.bin"
+        # topmodule = self.top()
+        fasm_file = f"inputs/{self.design_topmodule}.fasm"
+
+        bitstream_map = fpga_obj.find_files("tool", 'convert_bitstream', 'bitstream_map')
+
+        # if len(bitstream_maps) == 1:
+        json_outfile = f"outputs/{self.design_topmodule}.json"
+        binary_outfile = f"outputs/{self.design_topmodule}.bin"
 
         # Finishing steps are as follows:
         # 1. Convert FASM to IR
-        config_bitstream = fasm_utils.fasm2bitstream(fasm_file, bitstream_maps[0])
+        config_bitstream = fasm_utils.fasm2bitstream(fasm_file, bitstream_map)
 
         # 2.  Write IR to JSON for inspection purposes
         fasm_utils.write_bitstream_json(config_bitstream, json_outfile)
@@ -57,11 +67,11 @@ def run(chip):
         # 5.  Write binary to file
         fasm_utils.write_bitstream_binary(binary_bitstream, binary_outfile)
 
-    elif len(bitstream_maps) == 0:
-        raise SiliconCompilerError(
-            "fasm_to_bitstream requires a bitstream map file", chip=chip)
-    else:
-        raise SiliconCompilerError(
-            "Only one bitstream map file can be passed to fasm_to_bitstream", chip=chip)
+        # elif len(bitstream_maps) == 0:
+        #     raise ValueError(
+        #         "fasm_to_bitstream requires a bitstream map file", chip=self)
+        # else:
+        #     raise ValueError(
+        #         "Only one bitstream map file can be passed to fasm_to_bitstream", chip=self)
 
-    return 0
+        return 0
