@@ -24,7 +24,7 @@ class z1000(YosysFPGA, VPRFPGA):
                                     # bitstream map -> map
 
         self.set_dataroot("logik", "python://logik")
-        self.set_vendor("ZeroASIC")
+        self.package.set_vendor("ZeroASIC")
         self.set_lutsize(4)
 
         self.add_yosys_registertype(["dff", "dffr", "dffe", "dffer"])

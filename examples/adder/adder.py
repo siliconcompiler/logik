@@ -18,8 +18,8 @@ def hello_adder():
     # design.add_file('adder.pcf', fileset="pcf")  # TODO regen pcf
     design.set_topmodule('adder', fileset="rtl")
 
-    # 2. Create an FPGAProject object
-    project = siliconcompiler.FPGAProject(design)
+    # 2. Create an FPGA object
+    project = siliconcompiler.FPGA(design)
 
     project.add_fileset('rtl')
     # project.add_fileset('pcf')

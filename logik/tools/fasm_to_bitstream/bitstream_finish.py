@@ -4,11 +4,11 @@
 from logik.tools.fasm_to_bitstream import \
     fasm_to_bitstream as fasm_utils
 
-from siliconcompiler.tool import TaskSchema
+from siliconcompiler.tool import Task
 # TODO task schema I guess?
 
 
-class BitstreamFinishTask(TaskSchema):
+class BitstreamFinishTask(Task):
     def __init__(self):
         super().__init__()
 

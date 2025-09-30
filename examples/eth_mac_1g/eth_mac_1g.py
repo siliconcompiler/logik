@@ -43,7 +43,7 @@ def build():
         design.add_file("constraints/z1000/pin_constraints.pcf",
             fileset='pcf')
 
-    project = siliconcompiler.FPGAProject(design)
+    project = siliconcompiler.FPGA(design)
 
     project.add_fileset('rtl')
     project.add_fileset('sdc')
