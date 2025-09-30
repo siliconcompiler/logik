@@ -46,6 +46,11 @@ jobs:
           python3 -m pip install --upgrade pip
           pip3 install -e .[test]
 
+          # Temporary
+          pip uninstall -y siliconcompiler
+          pip install siliconcompiler@git+https://github.com/siliconcompiler/siliconcompiler@main
+
+
       - name: Run tests
         run: |
           . .efpga/bin/activate
