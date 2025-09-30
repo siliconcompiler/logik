@@ -15,14 +15,12 @@ def hello_adder():
     design = siliconcompiler.Design('adder')
 
     design.add_file('adder.v', fileset="rtl")
-    # design.add_file('adder.pcf', fileset="pcf")  # TODO regen pcf
     design.set_topmodule('adder', fileset="rtl")
 
     # 2. Create an FPGA object
     project = siliconcompiler.FPGA(design)
 
     project.add_fileset('rtl')
-    # project.add_fileset('pcf')
 
     # 2. Create an FPGA object and associate the design with it.
     fpga = K4_N8_6x6.K4_N8_6x6()
