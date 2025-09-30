@@ -5,7 +5,6 @@ from logik.tools.fasm_to_bitstream import \
     fasm_to_bitstream as fasm_utils
 
 from siliconcompiler.tool import Task
-# TODO task schema I guess?
 
 
 class BitstreamFinishTask(Task):
@@ -24,8 +23,6 @@ class BitstreamFinishTask(Task):
         '''
         super().setup()
 
-        # part_name = 'Z1000'  # self.project.get('fpga', 'partname')
-
         fpga = self.project.get('fpga', 'device')
         fpga_obj = self.project.get('library', fpga, field='schema')
         # dd_required_key(...) you can pass in an object the fpga and then finish the keypath
@@ -40,14 +37,11 @@ class BitstreamFinishTask(Task):
         fpga = self.project.get('fpga', 'device')
         fpga_obj = self.project.get('library', fpga, field='schema')
 
-        # part_name = self.get('fpga', 'partname')
-
         # topmodule = self.top()
         fasm_file = f"inputs/{self.design_topmodule}.fasm"
 
         bitstream_map = fpga_obj.find_files("tool", 'convert_bitstream', 'bitstream_map')
 
-        # if len(bitstream_maps) == 1:
         json_outfile = f"outputs/{self.design_topmodule}.json"
         binary_outfile = f"outputs/{self.design_topmodule}.bin"
 
@@ -66,12 +60,5 @@ class BitstreamFinishTask(Task):
 
         # 5.  Write binary to file
         fasm_utils.write_bitstream_binary(binary_bitstream, binary_outfile)
-
-        # elif len(bitstream_maps) == 0:
-        #     raise ValueError(
-        #         "fasm_to_bitstream requires a bitstream map file", chip=self)
-        # else:
-        #     raise ValueError(
-        #         "Only one bitstream map file can be passed to fasm_to_bitstream", chip=self)
 
         return 0
