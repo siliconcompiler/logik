@@ -1,17 +1,13 @@
 # Copyright 2024 Zero ASIC Corporation
 
-from siliconcompiler.flows.fpgaflow import FPGAVPROpenSTAFlow
-
-from siliconcompiler.tools.vpr import VPRFPGA
-from siliconcompiler.tools.yosys import YosysFPGA
-from siliconcompiler.tools.opensta import OpenSTAFPGA
+from logik.devices.logik_fpga import LogikFPGA
 
 
 # ####################################################
 # # Setup for K4_N8_6x6 FPGA
 # ####################################################
 
-class K4_N8_6x6(YosysFPGA, VPRFPGA):
+class K4_N8_6x6(LogikFPGA):
     '''
     Logik driver for K4_N8_6x6
     '''

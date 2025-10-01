@@ -1,17 +1,13 @@
 # Copyright 2024 Zero ASIC Corporation
 
-from siliconcompiler.flows.fpgaflow import FPGAVPROpenSTAFlow
-
-from siliconcompiler.tools.vpr import VPRFPGA
-from siliconcompiler.tools.yosys import YosysFPGA
-from siliconcompiler.tools.opensta import OpenSTAFPGA
+from logik.devices.logik_fpga import LogikFPGA
 
 
 # ####################################################
 # # Setup for z1000 FPGA
 # ####################################################
 
-class z1000(YosysFPGA, VPRFPGA):
+class z1000(LogikFPGA):
     '''
     Logik driver for z1000
     '''
@@ -45,8 +41,3 @@ class z1000(YosysFPGA, VPRFPGA):
             self.set_convert_bitstream_bitstream_map('z1000_cad/z1000_bitstream_map.json')
 
         self.set_vpr_router_lookahead("classic")
-
-
-    def set_convert_bitstream_bitstream_map(self, file: str, dataroot: str = None):
-        with self.active_dataroot(self._get_active_dataroot(dataroot)):
-            return self.set("tool", "convert_bitstream", "bitstream_map", file)

@@ -47,6 +47,7 @@ def build():
 
     project.add_fileset('rtl')
     project.add_fileset('sdc')
+    project.add_fileset('pcf')
 
     fpga = z1000.z1000()
 
