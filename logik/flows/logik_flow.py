@@ -31,8 +31,8 @@ class LogikFlow(fpgaflow.FPGAVPRFlow):
         """
         super().__init__(name)
 
-        self.node("convert_bitstream", bitstream_finish.BitstreamFinishTask())
-        self.edge("bitstream", "convert_bitstream")
+        # self.node("convert_bitstream", bitstream_finish.BitstreamFinishTask())
+        # self.edge("bitstream", "convert_bitstream")
 
 
 # ##################################################
