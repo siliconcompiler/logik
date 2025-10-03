@@ -19,7 +19,8 @@ class z1000(LogikFPGA):
         self.define_tool_parameter('convert_bitstream', 'bitstream_map', 'file',
                                    'map for fasm->bitstream conversion')
 
-        self.set_dataroot(part_name, f"github://siliconcompiler/logiklib/v0.1.0/{part_name}_cad.tar.gz", "0.1.0")
+        self.set_dataroot(
+            part_name, f"github://siliconcompiler/logiklib/v0.1.0/{part_name}_cad.tar.gz", "0.1.0")
 
         self.package.set_vendor("ZeroASIC")
         self.set_lutsize(4)

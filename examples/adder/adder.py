@@ -40,7 +40,6 @@ def hello_adder():
 
     project.set('option', 'continue', True, step="place")
 
-
     # 6. Run the compilation.
     project.run()
 
