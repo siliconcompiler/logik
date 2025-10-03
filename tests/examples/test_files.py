@@ -6,6 +6,7 @@ import siliconcompiler
 
 from logik.demo.z1000 import z1000
 
+
 @pytest.mark.parametrize(
     "part",
     [
