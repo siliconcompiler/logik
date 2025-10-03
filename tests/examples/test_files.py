@@ -4,16 +4,15 @@
 import pytest
 import siliconcompiler
 
-from logiklib.demo.K4_N8_6x6 import K4_N8_6x6
-
+from logik.demo.z1000 import z1000
 
 @pytest.mark.parametrize(
     "part",
     [
-        K4_N8_6x6,
+        z1000,
     ])
 def test_file_paths(part):
-    chip = siliconcompiler.Chip("test")
-    chip.use(part)
+    project = siliconcompiler.FPGA("test")
+    project.set_fpga(part())
 
-    assert chip.check_filepaths()
+    assert project.check_filepaths()
