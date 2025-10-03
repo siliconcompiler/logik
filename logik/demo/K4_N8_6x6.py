@@ -7,6 +7,9 @@ from logik.devices.logik_fpga import LogikFPGA
 # # Setup for K4_N8_6x6 FPGA
 # ####################################################
 
+from logiklib.demo.K4_N8_6x6 import K4_N8_6x6 as K4_N8_6x6_logiklib  # how to automajically download
+
+
 class K4_N8_6x6(LogikFPGA):
     '''
     Logik driver for K4_N8_6x6
@@ -16,8 +19,7 @@ class K4_N8_6x6(LogikFPGA):
         self.set_name("K4_N8_6x6")
 
         self.define_tool_parameter('convert_bitstream', 'bitstream_map', 'file',
-                                   'TODO help string')  # TODO change name from convert bitstream,
-                                    # bitstream map -> map
+                                   'Convert fasm2bits')
 
         self.set_dataroot("logik", "python://logik")
         self.package.set_vendor("ZeroASIC")
