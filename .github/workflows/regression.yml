@@ -47,8 +47,8 @@ jobs:
           pip3 install -e .[test]
 
           # Temporary
-          pip uninstall -y siliconcompiler
-          pip install siliconcompiler@git+https://github.com/siliconcompiler/siliconcompiler@main
+          pip3 uninstall -y siliconcompiler
+          pip3 install siliconcompiler@git+https://github.com/siliconcompiler/siliconcompiler@main
 
 
       - name: Run tests
