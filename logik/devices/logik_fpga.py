@@ -7,7 +7,7 @@ class LogikFPGA(YosysFPGA, VPRFPGA, OpenSTAFPGA):
     '''
     Class for logik FPGA devices
     '''
-    def __init(self):
+    def __init__(self):
         super().__init__()
 
     def set_convert_bitstream_bitstream_map(self, file: str, dataroot: str = None):

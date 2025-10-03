@@ -7,7 +7,7 @@ import siliconcompiler
 
 from logik.flows import logik_flow
 
-from logik.demo import K4_N8_6x6
+from logik.demo import z1000
 
 
 def hello_adder():
@@ -23,7 +23,7 @@ def hello_adder():
     project.add_fileset('rtl')
 
     # 2. Create an FPGA object and associate the design with it.
-    fpga = K4_N8_6x6.K4_N8_6x6()
+    fpga = z1000.z1000()
 
     # Enable command-line processing for options like -remote.
     # fpga.create_cmdline(switchlist=['-remote'])  # TODO
@@ -32,11 +32,14 @@ def hello_adder():
     project.set_fpga(fpga)
 
     # 4. Use the specific flow for this build.
-    # Note: K4_N8_6x6 might already load a flow, but it's good practice to specify it.
+    # Note: z1000 might already load a flow, but it's good practice to specify it.
     project.set_flow(logik_flow.LogikFlow())
 
     # # 5. Set any general options.
     project.set('option', 'quiet', True)
+
+    project.set('option', 'continue', True, step="place")
+
 
     # 6. Run the compilation.
     project.run()

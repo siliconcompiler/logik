@@ -13,31 +13,32 @@ class z1000(LogikFPGA):
     '''
     def __init__(self):
         super().__init__()
-        self.set_name("z1000")
+        part_name = "z1000"
+        self.set_name(part_name)
 
         self.define_tool_parameter('convert_bitstream', 'bitstream_map', 'file',
-                                   'TODO help string')  # TODO change name from convert bitstream,
-                                    # bitstream map -> map
+                                   'map for fasm->bitstream conversion')
 
-        self.set_dataroot("logik", "python://logik")
+        self.set_dataroot(part_name, f"github://siliconcompiler/logiklib/v0.1.0/{part_name}_cad.tar.gz", "0.1.0")
+
         self.package.set_vendor("ZeroASIC")
         self.set_lutsize(4)
 
         self.add_yosys_registertype(["dff", "dffr", "dffe", "dffer"])
         self.add_yosys_featureset(["async_reset", "enable"])
-        with self.active_dataroot("logik"):
-            self.set_yosys_flipfloptechmap("z1000_cad/tech_flops.v")
+        with self.active_dataroot(part_name):
+            self.set_yosys_flipfloptechmap("techlib/tech_flops.v")
 
-        self.set_vpr_devicecode("z1000")
+        self.set_vpr_devicecode(part_name)
         self.set_vpr_clockmodel("route")
         self.set_vpr_channelwidth(50)
         self.add_vpr_registertype(["dff", "dffr", "dffe", "dffer"])
-        with self.active_dataroot("logik"):
-            self.set_vpr_archfile("z1000_cad/z1000.xml")
-            self.set_vpr_graphfile("z1000_cad/z1000_rr_graph.xml")
-            self.set_vpr_constraintsmap("z1000_cad/z1000_constraint_map.json")
+        with self.active_dataroot(part_name):
+            self.set_vpr_archfile("cad/z1000.xml")
+            self.set_vpr_graphfile("cad/z1000_rr_graph.xml")
+            self.set_vpr_constraintsmap("cad/z1000_constraint_map.json")
 
-        with self.active_dataroot("logik"):
-            self.set_convert_bitstream_bitstream_map('z1000_cad/z1000_bitstream_map.json')
+        with self.active_dataroot(part_name):
+            self.set_convert_bitstream_bitstream_map('cad/z1000_bitstream_map.json')
 
         self.set_vpr_router_lookahead("classic")
