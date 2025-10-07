@@ -5,7 +5,7 @@
 
 import siliconcompiler
 
-from logik.flows import logik_flow
+from logik.flows.test import logik_flow_no_timing
 
 from logik.demo import z1000
 
@@ -33,7 +33,7 @@ def hello_adder():
 
     # 4. Use the specific flow for this build.
     # Note: z1000 might already load a flow, but it's good practice to specify it.
-    project.set_flow(logik_flow.LogikFlow())
+    project.set_flow(logik_flow_no_timing.LogikFlowNoTiming())
 
     # # 5. Set any general options.
     project.set('option', 'quiet', True)
