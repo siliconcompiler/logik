@@ -26,7 +26,7 @@ def hello_adder():
     fpga = z1000.z1000()
 
     # Enable command-line processing for options like -remote.
-    fpga.create_cmdline(switchlist=['-remote'])
+    project.create_cmdline(switchlist=['-remote'])
 
     # 3. Load the specific FPGA part, which also sets the default flow and libraries.
     project.set_fpga(fpga)
