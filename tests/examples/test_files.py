@@ -1,19 +1,13 @@
 # Copyright 2024 Zero ASIC Corporation
 # Licensed under the MIT License (see LICENSE for details)
 
-import pytest
 import siliconcompiler
 
-from logiklib.demo.K4_N8_6x6 import K4_N8_6x6
+from logik.demo.z1000 import z1000
 
 
-@pytest.mark.parametrize(
-    "part",
-    [
-        K4_N8_6x6,
-    ])
-def test_file_paths(part):
-    chip = siliconcompiler.Chip("test")
-    chip.use(part)
-
-    assert chip.check_filepaths()
+def test_file_paths():
+    project = siliconcompiler.FPGA("test")
+    project.set_fpga(z1000())
+    project.set('option', 'builddir', '.')
+    assert project.check_filepaths()

@@ -25,7 +25,7 @@ def setup_example_test(monkeypatch):
         # pytest's monkeypatch lets us modify sys.path for this test only.
         monkeypatch.syspath_prepend(ex_dir)
         # Mock chip.show() so it doesn't run.
-        monkeypatch.setattr(siliconcompiler.Chip, 'show', _mock_show)
+        monkeypatch.setattr(siliconcompiler.Project, 'show', _mock_show)
 
         return ex_dir
 

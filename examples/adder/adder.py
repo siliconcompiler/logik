@@ -3,39 +3,47 @@
 # Copyright 2024 Zero ASIC Corporation
 # Licensed under the MIT License (see LICENSE for details)
 
-from siliconcompiler import Chip
-from logik.flows import logik_flow
-from logiklib.demo.K4_N8_6x6 import K4_N8_6x6
+import siliconcompiler
+
+from logik.flows.test import logik_flow_no_timing
+
+from logik.demo import z1000
 
 
 def hello_adder():
+    # 1. Create a Design object to hold source files and constraints.
+    design = siliconcompiler.Design('adder')
 
-    # Create compilation object
-    chip = Chip('adder')
-    chip.create_cmdline(switchlist=['-remote'])
+    design.add_file('adder.v', fileset="rtl")
+    design.set_topmodule('adder', fileset="rtl")
 
-    # Specify design sources
-    chip.input('adder.v')
+    # 2. Create an FPGA object
+    project = siliconcompiler.FPGA(design)
 
-    # Specify pin constraints
-    chip.input('adder.pcf')
+    project.add_fileset('rtl')
 
-    # Compiler options
-    chip.set('option', 'quiet', True)
+    # 2. Create an FPGA object and associate the design with it.
+    fpga = z1000.z1000()
 
-    # Select target fpga
-    chip.set('fpga', 'partname', 'K4_N8_6x6')
+    # Enable command-line processing for options like -remote.
+    project.create_cmdline(switchlist=['-remote'])
 
-    # Load target settings
-    chip.set('option', 'flow', 'logik_flow')
-    chip.use(logik_flow)
-    chip.use(K4_N8_6x6)
+    # 3. Load the specific FPGA part, which also sets the default flow and libraries.
+    project.set_fpga(fpga)
 
-    # Run compiler
-    chip.run()
+    # 4. Use the specific flow for this build.
+    project.set_flow(logik_flow_no_timing.LogikFlowNoTiming())  # Temporary
 
-    # Display compiler results
-    chip.summary()
+    # # 5. Set any general options.
+    project.set('option', 'quiet', True)
+
+    project.set('option', 'continue', True, step="place")
+
+    # 6. Run the compilation.
+    project.run()
+
+    # 7. Display the results summary.
+    project.summary()
 
 
 if __name__ == "__main__":

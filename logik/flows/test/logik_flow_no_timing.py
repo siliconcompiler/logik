@@ -6,7 +6,7 @@ from siliconcompiler.flows import fpgaflow
 from logik.tools.fasm_to_bitstream import bitstream_finish
 
 
-class LogikFlow(fpgaflow.FPGAVPROpenSTAFlow):
+class LogikFlowNoTiming(fpgaflow.FPGAVPRFlow):
     '''An open-source FPGA flow using Yosys, VPR, and GenFasm.
 
     This flow is designed for academic and research FPGAs, utilizing VPR
@@ -18,7 +18,6 @@ class LogikFlow(fpgaflow.FPGAVPROpenSTAFlow):
     * **synthesis**: Synthesize the elaborated design into a netlist using Yosys.
     * **place**: Place the netlist components onto the FPGA architecture using VPR.
     * **route**: Route the connections between placed components using VPR.
-    * **timing**: Perform static analysis using OpenSTA.
     * **bitstream**: Generate the final bitstream using GenFasm.
     * **convert_bitstream**: Format bitstream from fasm to bits.
     '''
@@ -37,4 +36,4 @@ class LogikFlow(fpgaflow.FPGAVPROpenSTAFlow):
 
 # ##################################################
 if __name__ == "__main__":
-    LogikFlow().write_flowgraph(f"{LogikFlow().name}.png")
+    LogikFlowNoTiming().write_flowgraph(f"{LogikFlowNoTiming().name}.png")
