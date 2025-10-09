@@ -4,8 +4,11 @@
 # with Alex Forencich's 1G Ethernet MAC
 
 import siliconcompiler
-from logik.flows.test import logik_flow_no_timing
-from logik.demo import z1000
+
+from logik.flows.logik_flow import LogikFlow
+
+from logik.demo import z1000  # Temporary
+# from logik.z1000_local_cad import z1000  # Temporary
 
 
 def build():
@@ -53,9 +56,8 @@ def build():
 
     project.set_fpga(fpga)
 
-    project.set_flow(logik_flow_no_timing.LogikFlowNoTiming())  # Temporary
+    project.set_flow(LogikFlow())
 
-    # Customize steps for this design
     project.set('option', 'quiet', True)
 
     project.run()

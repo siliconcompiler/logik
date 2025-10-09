@@ -5,9 +5,10 @@
 
 import siliconcompiler
 
-from logik.flows.test import logik_flow_no_timing
+from logik.flows.logik_flow import LogikFlow
 
-from logik.demo import z1000
+from logik.demo.z1000 import z1000  # Temporary
+# from logik.z1000_local_cad import z1000  # Temporary
 
 
 def hello_adder():
@@ -31,18 +32,16 @@ def hello_adder():
     # 3. Load the specific FPGA part, which also sets the default flow and libraries.
     project.set_fpga(fpga)
 
-    # 4. Use the specific flow for this build.
-    project.set_flow(logik_flow_no_timing.LogikFlowNoTiming())  # Temporary
+    #  Use the specific flow for this build.
+    project.set_flow(LogikFlow())
 
-    # # 5. Set any general options.
+    # # Customize steps for this design
     project.set('option', 'quiet', True)
 
-    project.set('option', 'continue', True, step="place")
-
-    # 6. Run the compilation.
+    # Run the compilation.
     project.run()
 
-    # 7. Display the results summary.
+    # Display the results summary.
     project.summary()
 
 

@@ -1,58 +1,60 @@
 #!/usr/bin/env python3
 
-import os
+# This is the logik run script for demonstrating RTL-to-bitstream
+# with Alex Forencich's 1G Ethernet MAC
 
-from logik.flows import logik_flow
-from logiklib.zeroasic.z1062 import z1062
+import siliconcompiler
+from logik.flows.logik_flow import LogikFlow
 
-from siliconcompiler import Chip
+
+from logik.z1062_local_cad import z1062  # Temporary
 
 
 def build():
+    design = siliconcompiler.Design('picorv32')
 
-    design_name = 'picorv32'
-    design_top_module = 'picorv32'
+    # Define source files from verilog-ethernet repo
 
-    chip = Chip(f'{design_name}')
+    # First we need to register the verilog-ethernet repo
+    # as a package
+    design.set_dataroot(
+        'picorv32-logikbench',
+        'git+https://github.com/zeroasiccorp/logikbench.git',
+        'db866c536340c071c563a063c9406888070dfbda')
 
-    # Set default part name
-    chip.set('fpga', 'partname', "z1062")
+    # Then we can pull in the specific RTL we need from that
+    # repository -- Silicon Compiler will download and cache the files
+    # for us
+    with design.active_dataroot('picorv32-logikbench'):
+        design.add_file(f'logikbench/blocks/picorv32/rtl/picorv32.v', fileset='rtl')
+        design.set_topmodule("picorv32", fileset="rtl")
 
-    chip.use(z1062)
-    chip.use(logik_flow)
-    flow_name = 'logik_flow'
-    chip.set('option', 'flow', flow_name)
+    design.set_dataroot('constraints', __file__)
+    with design.active_dataroot('constraints'):
+        # Add timing constraints
+        design.add_file('picorv32.sdc', fileset='sdc')
 
-    # Register the picorv32 repo as a package
-    chip.register_source(
-        name='picorv32-logikbench',
-        path='git+https://github.com/zeroasiccorp/logikbench.git',
-        ref='db866c536340c071c563a063c9406888070dfbda')
+        # Define pin constraints
+        design.add_file("constraints/z1062/picorv32.pcf",
+            fileset='pcf')
 
-    # Add source HDL files
-    chip.input('logikbench/blocks/picorv32/rtl/picorv32.v',
-               package='picorv32-logikbench')
+    project = siliconcompiler.FPGA(design)
 
-    # Set the top module to {design_top_module}
-    chip.set('option', 'entrypoint', f'{design_top_module}')
+    project.add_fileset('rtl')
+    project.add_fileset('sdc')
+    project.add_fileset('pcf')
 
-    # register path to setup files
-    chip.register_source(name='picorv32-setup',
-                         path=os.path.dirname(__file__))
-    
-    # Define timing constraints
-    chip.input(f'{design_name}.sdc', package='picorv32-setup')
+    fpga = z1062.z1062()
+    project.set_fpga(fpga)
 
-    chip.add('tool', 'yosys', 'task', 'syn', 'var', 'synth_fpga_opt_mode', 'delay')
+    project.set_flow(LogikFlow())
 
-    # Define pin constraints
-    chip.input(f'constraints/z1062/{design_name}.pcf', package='picorv32-setup')
+    # # Customize steps for this design
+    project.set('option', 'quiet', True)
 
-    chip.set('option', 'quiet', True)
-
-    chip.run()
-    chip.summary()
+    project.run()
+    project.summary()
 
 
-if (__name__ == '__main__'):
+if __name__ == '__main__':
     build()
