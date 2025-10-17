@@ -58,7 +58,7 @@ def build():
 
     project.set_flow(LogikFlow())
 
-    project.set('option', 'quiet', True)
+    project.option.set_quiet(True)
 
     project.run()
     project.summary()

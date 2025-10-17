@@ -43,7 +43,7 @@ def build():
     project.set_flow(LogikFlow())
 
     # # Customize steps for this design
-    project.set('option', 'quiet', True)
+    project.option.set_quiet(True)
 
     project.run()
     project.summary()

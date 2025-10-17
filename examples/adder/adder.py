@@ -7,8 +7,8 @@ import siliconcompiler
 
 from logik.flows.logik_flow import LogikFlow
 
-from logik.demo.z1000 import z1000  # Temporary
-# from logik.z1000_local_cad import z1000  # Temporary
+# from logik.demo.z1000 import z1000  # Temporary
+from logik.z1000_local_cad import z1000  # Temporary
 
 
 def hello_adder():
@@ -18,16 +18,14 @@ def hello_adder():
     design.add_file('adder.v', fileset="rtl")
     design.set_topmodule('adder', fileset="rtl")
 
-    # 2. Create an FPGA object
-    project = siliconcompiler.FPGA(design)
+    # 2. Create an FPGA object with a -remote command line option
+    project = siliconcompiler.FPGA.create_cmdline(switchlist=['-remote'])
+    project.set_design(design)
 
     project.add_fileset('rtl')
 
     # 2. Create an FPGA object and associate the design with it.
     fpga = z1000.z1000()
-
-    # Enable command-line processing for options like -remote.
-    project.create_cmdline(switchlist=['-remote'])
 
     # 3. Load the specific FPGA part, which also sets the default flow and libraries.
     project.set_fpga(fpga)
@@ -36,7 +34,7 @@ def hello_adder():
     project.set_flow(LogikFlow())
 
     # # Customize steps for this design
-    project.set('option', 'quiet', True)
+    project.option.set_quiet(True)
 
     # Run the compilation.
     project.run()
