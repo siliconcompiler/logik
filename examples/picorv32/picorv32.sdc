@@ -1,1 +1,1 @@
-create_clock -period 25 clk
+create_clock -period 12.5 clk
