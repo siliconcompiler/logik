@@ -5,9 +5,6 @@ from logik.flows.logik_flow import LogikFlow
 
 from logiklib.zeroasic.z1062 import z1062
 
-from siliconcompiler.tools import get_task
-from siliconcompiler.tools.yosys.syn_fpga import FPGASynthesis
-
 
 def build():
     module_name = 'picorv32'
@@ -45,8 +42,6 @@ def build():
     project.set_fpga(fpga)
 
     project.set_flow(LogikFlow())
-
-    get_task(project, filter=FPGASynthesis).set("var", "synth_opt_mode", "delay")
 
     # # Customize steps for this design
     project.option.set_quiet(True)
