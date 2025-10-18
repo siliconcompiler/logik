@@ -7,8 +7,7 @@ import siliconcompiler
 
 from logik.flows.logik_flow import LogikFlow
 
-# from logik.demo.z1000 import z1000  # Temporary
-from logik.z1000_local_cad import z1000  # Temporary
+from logiklib.zeroasic.z1000 import z1000
 
 
 def hello_adder():

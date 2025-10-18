@@ -3,7 +3,10 @@
 import siliconcompiler
 from logik.flows.logik_flow import LogikFlow
 
-from logik.z1062_local_cad import z1062  # Temporary
+from logiklib.zeroasic.z1062 import z1062
+
+from siliconcompiler.tools import get_task
+from siliconcompiler.tools.yosys.syn_fpga import FPGASynthesis
 
 
 def build():
@@ -18,7 +21,8 @@ def build():
         'db866c536340c071c563a063c9406888070dfbda')
 
     with design.active_dataroot('picorv32-logikbench'):
-        design.add_file(f'logikbench/blocks/{module_name}/rtl/{module_name}.v', fileset='rtl')
+        design.add_file(f'logikbench/blocks/{module_name}/rtl/{module_name}.v',
+                        fileset='rtl')
         design.set_topmodule(module_name, fileset="rtl")
 
     design.set_dataroot('constraints', __file__)
@@ -28,7 +32,7 @@ def build():
 
         # Define pin constraints
         design.add_file(f"constraints/z1062/{module_name}.pcf",
-            fileset='pcf')
+                        fileset='pcf')
 
     project = siliconcompiler.FPGA(design)
 
@@ -41,6 +45,8 @@ def build():
     project.set_fpga(fpga)
 
     project.set_flow(LogikFlow())
+
+    get_task(project, filter=FPGASynthesis).set("var", "synth_opt_mode", "delay")
 
     # # Customize steps for this design
     project.option.set_quiet(True)

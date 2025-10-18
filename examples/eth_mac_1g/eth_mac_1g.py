@@ -7,8 +7,7 @@ import siliconcompiler
 
 from logik.flows.logik_flow import LogikFlow
 
-from logik.demo import z1000  # Temporary
-# from logik.z1000_local_cad import z1000  # Temporary
+from logiklib.zeroasic.z1000 import z1000
 
 
 def build():
@@ -44,7 +43,7 @@ def build():
 
         # Define pin constraints
         design.add_file("constraints/z1000/pin_constraints.pcf",
-            fileset='pcf')
+                        fileset='pcf')
 
     project = siliconcompiler.FPGA(design)
 
