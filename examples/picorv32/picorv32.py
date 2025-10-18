@@ -47,7 +47,8 @@ def build():
     project.set_flow(LogikFlow())
 
     # set synthesis mode to 'delay'
-    get_task(project, filter=FPGASynthesis).set("var", "synth_opt_mode", "delay")
+    get_task(project, filter=FPGASynthesis).set("var", "synth_opt_mode",
+                                                "delay")
 
     # Customize steps for this design
     project.option.set_quiet(True)
