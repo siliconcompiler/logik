@@ -35,6 +35,9 @@ docs = [
 
 [tool.setuptools]
 include-package-data = true
+packages = [
+    "logik"
+]
 
 [tool.setuptools.packages.find]
 namespaces = false
