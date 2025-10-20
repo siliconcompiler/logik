@@ -7,7 +7,7 @@ Logik
 
 Logik is an open source FPGA tool chain with support for high level language parsing, synthesis, placement, routing, bit-stream generation, and analysis. Users enter design sources, constraints, and compile options through a simple [SiliconCompiler](https://github.com/siliconcompiler/siliconcompiler/) Python API. Once setup is complete, automated compilation can be initiated with a single line run command. Logik relies on the [Logiklib](https://github.com/siliconcompiler/logiklib) project for all architecture and device descriptions.
 
-![logik_flow](https://raw.githubusercontent.com/siliconcompiler/logik/main/images/logik_flow.svg)
+![logik_flow](images/logik-plus-open-sta-flow.png)
 
 Logik supports most of the features you would expect in a commercial proprietary FPGA tool chain.
 
@@ -35,8 +35,7 @@ python -m pip install --upgrade logik
 All open source FPGA pre-requisites can be installed via the SiliconCompiler `sc-install` utility.
 
 ```sh
-sc-install -group fpga
-sc-install opensta
+sc-install -group fpga opensta
 ```
 
 The following example illustrate some essential Logik features. For complete documentation of all options available, see the [SiliconCompiler project](https://github.com/siliconcompiler/siliconcompiler/blob/main/README.md).
@@ -112,7 +111,7 @@ Running natively on your local machine will require installing a number of prere
 We recommend using the SiliconCompiler `sc-install` utility to automatically install the correct versions of all open source FPGA tool dependencies.
 
 ```sh
-sc-install -group fpga
+sc-install -group fpga opensta
 ```
 
 Detailed installation instructions can be found in the [SiliconCompiler Installation Guide](https://docs.siliconcompiler.com/en/stable/user_guide/installation.html#external-tools).
