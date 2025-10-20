@@ -53,27 +53,27 @@ from logiklib.zeroasic.z1000 import z1000
 
 
 def hello_adder():
-    # 1. Create a Design object to hold source files and constraints.
+    # Create a Design object to hold source files and constraints.
     design = siliconcompiler.Design('adder')
 
     design.add_file('adder.v', fileset="rtl")
     design.set_topmodule('adder', fileset="rtl")
 
-    # 2. Create an FPGA object with a -remote command line option
+    # Create an FPGA object with a -remote command line option
     project = siliconcompiler.FPGA(design)
 
     project.add_fileset('rtl')
 
-    # 2. Create an FPGA object and associate the design with it.
+    # Create an FPGA object and associate the design with it.
     fpga = z1000.z1000()
 
-    # 3. Load the specific FPGA part, which also sets the default flow and libraries.
+    # Load the specific FPGA part, which also sets the default flow and libraries.
     project.set_fpga(fpga)
 
     #  Use the specific flow for this build.
     project.set_flow(LogikFlow())
 
-    # # Customize steps for this design
+    # Customize steps for this design
     project.option.set_quiet(True)
 
     # Run the compilation.
