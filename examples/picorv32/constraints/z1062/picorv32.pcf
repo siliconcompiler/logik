@@ -1,0 +1,1638 @@
+{
+  "clk": {
+    "pin": "gpio_in_clk[0]",
+    "direction": "input"
+  },
+  "resetn": {
+    "pin": "gpio_in_west[10]",
+    "direction": "input"
+  },
+  "trap": {
+    "pin": "gpio_out_north[10]",
+    "direction": "output"
+  },
+  "mem_valid": {
+    "pin": "gpio_out_north[11]",
+    "direction": "output"
+  },
+  "mem_instr": {
+    "pin": "gpio_out_north[12]",
+    "direction": "output"
+  },
+  "mem_ready": {
+    "pin": "gpio_in_west[11]",
+    "direction": "input"
+  },
+  "mem_la_read": {
+    "pin": "gpio_out_west[12]",
+    "direction": "output"
+  },
+  "mem_la_write": {
+    "pin": "gpio_out_west[13]",
+    "direction": "output"
+  },
+  "pcpi_valid": {
+    "pin": "gpio_out_south[10]",
+    "direction": "output"
+  },
+  "pcpi_wr": {
+    "pin": "gpio_in_east[10]",
+    "direction": "input"
+  },
+  "pcpi_wait": {
+    "pin": "gpio_in_east[11]",
+    "direction": "input"
+  },
+  "pcpi_ready": {
+    "pin": "gpio_in_east[12]",
+    "direction": "input"
+  },
+  "trace_valid": {
+    "pin": "gpio_out_west[14]",
+    "direction": "output"
+  },
+  "mem_addr[0]": {
+    "pin": "gpio_out_north[320]",
+    "direction": "output"
+  },
+  "mem_addr[1]": {
+    "pin": "gpio_out_north[321]",
+    "direction": "output"
+  },
+  "mem_addr[2]": {
+    "pin": "gpio_out_north[322]",
+    "direction": "output"
+  },
+  "mem_addr[3]": {
+    "pin": "gpio_out_north[323]",
+    "direction": "output"
+  },
+  "mem_addr[4]": {
+    "pin": "gpio_out_north[324]",
+    "direction": "output"
+  },
+  "mem_addr[5]": {
+    "pin": "gpio_out_north[325]",
+    "direction": "output"
+  },
+  "mem_addr[6]": {
+    "pin": "gpio_out_north[326]",
+    "direction": "output"
+  },
+  "mem_addr[7]": {
+    "pin": "gpio_out_north[327]",
+    "direction": "output"
+  },
+  "mem_addr[8]": {
+    "pin": "gpio_out_north[328]",
+    "direction": "output"
+  },
+  "mem_addr[9]": {
+    "pin": "gpio_out_north[329]",
+    "direction": "output"
+  },
+  "mem_addr[10]": {
+    "pin": "gpio_out_north[330]",
+    "direction": "output"
+  },
+  "mem_addr[11]": {
+    "pin": "gpio_out_north[331]",
+    "direction": "output"
+  },
+  "mem_addr[12]": {
+    "pin": "gpio_out_north[332]",
+    "direction": "output"
+  },
+  "mem_addr[13]": {
+    "pin": "gpio_out_north[333]",
+    "direction": "output"
+  },
+  "mem_addr[14]": {
+    "pin": "gpio_out_north[334]",
+    "direction": "output"
+  },
+  "mem_addr[15]": {
+    "pin": "gpio_out_north[335]",
+    "direction": "output"
+  },
+  "mem_addr[16]": {
+    "pin": "gpio_out_north[336]",
+    "direction": "output"
+  },
+  "mem_addr[17]": {
+    "pin": "gpio_out_north[337]",
+    "direction": "output"
+  },
+  "mem_addr[18]": {
+    "pin": "gpio_out_north[338]",
+    "direction": "output"
+  },
+  "mem_addr[19]": {
+    "pin": "gpio_out_north[339]",
+    "direction": "output"
+  },
+  "mem_addr[20]": {
+    "pin": "gpio_out_north[340]",
+    "direction": "output"
+  },
+  "mem_addr[21]": {
+    "pin": "gpio_out_north[341]",
+    "direction": "output"
+  },
+  "mem_addr[22]": {
+    "pin": "gpio_out_north[342]",
+    "direction": "output"
+  },
+  "mem_addr[23]": {
+    "pin": "gpio_out_north[343]",
+    "direction": "output"
+  },
+  "mem_addr[24]": {
+    "pin": "gpio_out_north[344]",
+    "direction": "output"
+  },
+  "mem_addr[25]": {
+    "pin": "gpio_out_north[345]",
+    "direction": "output"
+  },
+  "mem_addr[26]": {
+    "pin": "gpio_out_north[346]",
+    "direction": "output"
+  },
+  "mem_addr[27]": {
+    "pin": "gpio_out_north[347]",
+    "direction": "output"
+  },
+  "mem_addr[28]": {
+    "pin": "gpio_out_north[348]",
+    "direction": "output"
+  },
+  "mem_addr[29]": {
+    "pin": "gpio_out_north[349]",
+    "direction": "output"
+  },
+  "mem_addr[30]": {
+    "pin": "gpio_out_north[350]",
+    "direction": "output"
+  },
+  "mem_addr[31]": {
+    "pin": "gpio_out_north[351]",
+    "direction": "output"
+  },
+  "mem_wdata[0]": {
+    "pin": "gpio_out_east[400]",
+    "direction": "output"
+  },
+  "mem_wdata[1]": {
+    "pin": "gpio_out_east[401]",
+    "direction": "output"
+  },
+  "mem_wdata[2]": {
+    "pin": "gpio_out_east[402]",
+    "direction": "output"
+  },
+  "mem_wdata[3]": {
+    "pin": "gpio_out_east[403]",
+    "direction": "output"
+  },
+  "mem_wdata[4]": {
+    "pin": "gpio_out_east[404]",
+    "direction": "output"
+  },
+  "mem_wdata[5]": {
+    "pin": "gpio_out_east[405]",
+    "direction": "output"
+  },
+  "mem_wdata[6]": {
+    "pin": "gpio_out_east[406]",
+    "direction": "output"
+  },
+  "mem_wdata[7]": {
+    "pin": "gpio_out_east[407]",
+    "direction": "output"
+  },
+  "mem_wdata[8]": {
+    "pin": "gpio_out_east[408]",
+    "direction": "output"
+  },
+  "mem_wdata[9]": {
+    "pin": "gpio_out_east[409]",
+    "direction": "output"
+  },
+  "mem_wdata[10]": {
+    "pin": "gpio_out_east[410]",
+    "direction": "output"
+  },
+  "mem_wdata[11]": {
+    "pin": "gpio_out_east[411]",
+    "direction": "output"
+  },
+  "mem_wdata[12]": {
+    "pin": "gpio_out_east[412]",
+    "direction": "output"
+  },
+  "mem_wdata[13]": {
+    "pin": "gpio_out_east[413]",
+    "direction": "output"
+  },
+  "mem_wdata[14]": {
+    "pin": "gpio_out_east[414]",
+    "direction": "output"
+  },
+  "mem_wdata[15]": {
+    "pin": "gpio_out_east[415]",
+    "direction": "output"
+  },
+  "mem_wdata[16]": {
+    "pin": "gpio_out_east[416]",
+    "direction": "output"
+  },
+  "mem_wdata[17]": {
+    "pin": "gpio_out_east[417]",
+    "direction": "output"
+  },
+  "mem_wdata[18]": {
+    "pin": "gpio_out_east[418]",
+    "direction": "output"
+  },
+  "mem_wdata[19]": {
+    "pin": "gpio_out_east[419]",
+    "direction": "output"
+  },
+  "mem_wdata[20]": {
+    "pin": "gpio_out_east[420]",
+    "direction": "output"
+  },
+  "mem_wdata[21]": {
+    "pin": "gpio_out_east[421]",
+    "direction": "output"
+  },
+  "mem_wdata[22]": {
+    "pin": "gpio_out_east[422]",
+    "direction": "output"
+  },
+  "mem_wdata[23]": {
+    "pin": "gpio_out_east[423]",
+    "direction": "output"
+  },
+  "mem_wdata[24]": {
+    "pin": "gpio_out_east[424]",
+    "direction": "output"
+  },
+  "mem_wdata[25]": {
+    "pin": "gpio_out_east[425]",
+    "direction": "output"
+  },
+  "mem_wdata[26]": {
+    "pin": "gpio_out_east[426]",
+    "direction": "output"
+  },
+  "mem_wdata[27]": {
+    "pin": "gpio_out_east[427]",
+    "direction": "output"
+  },
+  "mem_wdata[28]": {
+    "pin": "gpio_out_east[428]",
+    "direction": "output"
+  },
+  "mem_wdata[29]": {
+    "pin": "gpio_out_east[429]",
+    "direction": "output"
+  },
+  "mem_wdata[30]": {
+    "pin": "gpio_out_east[430]",
+    "direction": "output"
+  },
+  "mem_wdata[31]": {
+    "pin": "gpio_out_east[431]",
+    "direction": "output"
+  },
+  "mem_wstrb[0]": {
+    "pin": "gpio_out_north[460]",
+    "direction": "output"
+  },
+  "mem_wstrb[1]": {
+    "pin": "gpio_out_north[461]",
+    "direction": "output"
+  },
+  "mem_wstrb[2]": {
+    "pin": "gpio_out_north[462]",
+    "direction": "output"
+  },
+  "mem_wstrb[3]": {
+    "pin": "gpio_out_north[463]",
+    "direction": "output"
+  },
+  "mem_rdata[0]": {
+    "pin": "gpio_in_west[320]",
+    "direction": "input"
+  },
+  "mem_rdata[1]": {
+    "pin": "gpio_in_west[321]",
+    "direction": "input"
+  },
+  "mem_rdata[2]": {
+    "pin": "gpio_in_west[322]",
+    "direction": "input"
+  },
+  "mem_rdata[3]": {
+    "pin": "gpio_in_west[323]",
+    "direction": "input"
+  },
+  "mem_rdata[4]": {
+    "pin": "gpio_in_west[324]",
+    "direction": "input"
+  },
+  "mem_rdata[5]": {
+    "pin": "gpio_in_west[325]",
+    "direction": "input"
+  },
+  "mem_rdata[6]": {
+    "pin": "gpio_in_west[326]",
+    "direction": "input"
+  },
+  "mem_rdata[7]": {
+    "pin": "gpio_in_west[327]",
+    "direction": "input"
+  },
+  "mem_rdata[8]": {
+    "pin": "gpio_in_west[328]",
+    "direction": "input"
+  },
+  "mem_rdata[9]": {
+    "pin": "gpio_in_west[329]",
+    "direction": "input"
+  },
+  "mem_rdata[10]": {
+    "pin": "gpio_in_west[330]",
+    "direction": "input"
+  },
+  "mem_rdata[11]": {
+    "pin": "gpio_in_west[331]",
+    "direction": "input"
+  },
+  "mem_rdata[12]": {
+    "pin": "gpio_in_west[332]",
+    "direction": "input"
+  },
+  "mem_rdata[13]": {
+    "pin": "gpio_in_west[333]",
+    "direction": "input"
+  },
+  "mem_rdata[14]": {
+    "pin": "gpio_in_west[334]",
+    "direction": "input"
+  },
+  "mem_rdata[15]": {
+    "pin": "gpio_in_west[335]",
+    "direction": "input"
+  },
+  "mem_rdata[16]": {
+    "pin": "gpio_in_west[336]",
+    "direction": "input"
+  },
+  "mem_rdata[17]": {
+    "pin": "gpio_in_west[337]",
+    "direction": "input"
+  },
+  "mem_rdata[18]": {
+    "pin": "gpio_in_west[338]",
+    "direction": "input"
+  },
+  "mem_rdata[19]": {
+    "pin": "gpio_in_west[339]",
+    "direction": "input"
+  },
+  "mem_rdata[20]": {
+    "pin": "gpio_in_west[340]",
+    "direction": "input"
+  },
+  "mem_rdata[21]": {
+    "pin": "gpio_in_west[341]",
+    "direction": "input"
+  },
+  "mem_rdata[22]": {
+    "pin": "gpio_in_west[342]",
+    "direction": "input"
+  },
+  "mem_rdata[23]": {
+    "pin": "gpio_in_west[343]",
+    "direction": "input"
+  },
+  "mem_rdata[24]": {
+    "pin": "gpio_in_west[344]",
+    "direction": "input"
+  },
+  "mem_rdata[25]": {
+    "pin": "gpio_in_west[345]",
+    "direction": "input"
+  },
+  "mem_rdata[26]": {
+    "pin": "gpio_in_west[346]",
+    "direction": "input"
+  },
+  "mem_rdata[27]": {
+    "pin": "gpio_in_west[347]",
+    "direction": "input"
+  },
+  "mem_rdata[28]": {
+    "pin": "gpio_in_west[348]",
+    "direction": "input"
+  },
+  "mem_rdata[29]": {
+    "pin": "gpio_in_west[349]",
+    "direction": "input"
+  },
+  "mem_rdata[30]": {
+    "pin": "gpio_in_west[350]",
+    "direction": "input"
+  },
+  "mem_rdata[31]": {
+    "pin": "gpio_in_west[351]",
+    "direction": "input"
+  },
+  "mem_la_addr[0]": {
+    "pin": "gpio_out_east[260]",
+    "direction": "output"
+  },
+  "mem_la_addr[1]": {
+    "pin": "gpio_out_east[261]",
+    "direction": "output"
+  },
+  "mem_la_addr[2]": {
+    "pin": "gpio_out_east[262]",
+    "direction": "output"
+  },
+  "mem_la_addr[3]": {
+    "pin": "gpio_out_east[263]",
+    "direction": "output"
+  },
+  "mem_la_addr[4]": {
+    "pin": "gpio_out_east[264]",
+    "direction": "output"
+  },
+  "mem_la_addr[5]": {
+    "pin": "gpio_out_east[265]",
+    "direction": "output"
+  },
+  "mem_la_addr[6]": {
+    "pin": "gpio_out_east[266]",
+    "direction": "output"
+  },
+  "mem_la_addr[7]": {
+    "pin": "gpio_out_east[267]",
+    "direction": "output"
+  },
+  "mem_la_addr[8]": {
+    "pin": "gpio_out_east[268]",
+    "direction": "output"
+  },
+  "mem_la_addr[9]": {
+    "pin": "gpio_out_east[269]",
+    "direction": "output"
+  },
+  "mem_la_addr[10]": {
+    "pin": "gpio_out_east[270]",
+    "direction": "output"
+  },
+  "mem_la_addr[11]": {
+    "pin": "gpio_out_east[271]",
+    "direction": "output"
+  },
+  "mem_la_addr[12]": {
+    "pin": "gpio_out_east[272]",
+    "direction": "output"
+  },
+  "mem_la_addr[13]": {
+    "pin": "gpio_out_east[273]",
+    "direction": "output"
+  },
+  "mem_la_addr[14]": {
+    "pin": "gpio_out_east[274]",
+    "direction": "output"
+  },
+  "mem_la_addr[15]": {
+    "pin": "gpio_out_east[275]",
+    "direction": "output"
+  },
+  "mem_la_addr[16]": {
+    "pin": "gpio_out_east[276]",
+    "direction": "output"
+  },
+  "mem_la_addr[17]": {
+    "pin": "gpio_out_east[277]",
+    "direction": "output"
+  },
+  "mem_la_addr[18]": {
+    "pin": "gpio_out_east[278]",
+    "direction": "output"
+  },
+  "mem_la_addr[19]": {
+    "pin": "gpio_out_east[279]",
+    "direction": "output"
+  },
+  "mem_la_addr[20]": {
+    "pin": "gpio_out_east[280]",
+    "direction": "output"
+  },
+  "mem_la_addr[21]": {
+    "pin": "gpio_out_east[281]",
+    "direction": "output"
+  },
+  "mem_la_addr[22]": {
+    "pin": "gpio_out_east[282]",
+    "direction": "output"
+  },
+  "mem_la_addr[23]": {
+    "pin": "gpio_out_east[283]",
+    "direction": "output"
+  },
+  "mem_la_addr[24]": {
+    "pin": "gpio_out_east[284]",
+    "direction": "output"
+  },
+  "mem_la_addr[25]": {
+    "pin": "gpio_out_east[285]",
+    "direction": "output"
+  },
+  "mem_la_addr[26]": {
+    "pin": "gpio_out_east[286]",
+    "direction": "output"
+  },
+  "mem_la_addr[27]": {
+    "pin": "gpio_out_east[287]",
+    "direction": "output"
+  },
+  "mem_la_addr[28]": {
+    "pin": "gpio_out_east[288]",
+    "direction": "output"
+  },
+  "mem_la_addr[29]": {
+    "pin": "gpio_out_east[289]",
+    "direction": "output"
+  },
+  "mem_la_addr[30]": {
+    "pin": "gpio_out_east[290]",
+    "direction": "output"
+  },
+  "mem_la_addr[31]": {
+    "pin": "gpio_out_east[291]",
+    "direction": "output"
+  },
+  "mem_la_wdata[0]": {
+    "pin": "gpio_out_south[20]",
+    "direction": "output"
+  },
+  "mem_la_wdata[1]": {
+    "pin": "gpio_out_south[21]",
+    "direction": "output"
+  },
+  "mem_la_wdata[2]": {
+    "pin": "gpio_out_south[22]",
+    "direction": "output"
+  },
+  "mem_la_wdata[3]": {
+    "pin": "gpio_out_south[23]",
+    "direction": "output"
+  },
+  "mem_la_wdata[4]": {
+    "pin": "gpio_out_south[24]",
+    "direction": "output"
+  },
+  "mem_la_wdata[5]": {
+    "pin": "gpio_out_south[25]",
+    "direction": "output"
+  },
+  "mem_la_wdata[6]": {
+    "pin": "gpio_out_south[26]",
+    "direction": "output"
+  },
+  "mem_la_wdata[7]": {
+    "pin": "gpio_out_south[27]",
+    "direction": "output"
+  },
+  "mem_la_wdata[8]": {
+    "pin": "gpio_out_south[28]",
+    "direction": "output"
+  },
+  "mem_la_wdata[9]": {
+    "pin": "gpio_out_south[29]",
+    "direction": "output"
+  },
+  "mem_la_wdata[10]": {
+    "pin": "gpio_out_south[30]",
+    "direction": "output"
+  },
+  "mem_la_wdata[11]": {
+    "pin": "gpio_out_south[31]",
+    "direction": "output"
+  },
+  "mem_la_wdata[12]": {
+    "pin": "gpio_out_south[32]",
+    "direction": "output"
+  },
+  "mem_la_wdata[13]": {
+    "pin": "gpio_out_south[33]",
+    "direction": "output"
+  },
+  "mem_la_wdata[14]": {
+    "pin": "gpio_out_south[34]",
+    "direction": "output"
+  },
+  "mem_la_wdata[15]": {
+    "pin": "gpio_out_south[35]",
+    "direction": "output"
+  },
+  "mem_la_wdata[16]": {
+    "pin": "gpio_out_south[36]",
+    "direction": "output"
+  },
+  "mem_la_wdata[17]": {
+    "pin": "gpio_out_south[37]",
+    "direction": "output"
+  },
+  "mem_la_wdata[18]": {
+    "pin": "gpio_out_south[38]",
+    "direction": "output"
+  },
+  "mem_la_wdata[19]": {
+    "pin": "gpio_out_south[39]",
+    "direction": "output"
+  },
+  "mem_la_wdata[20]": {
+    "pin": "gpio_out_south[40]",
+    "direction": "output"
+  },
+  "mem_la_wdata[21]": {
+    "pin": "gpio_out_south[41]",
+    "direction": "output"
+  },
+  "mem_la_wdata[22]": {
+    "pin": "gpio_out_south[42]",
+    "direction": "output"
+  },
+  "mem_la_wdata[23]": {
+    "pin": "gpio_out_south[43]",
+    "direction": "output"
+  },
+  "mem_la_wdata[24]": {
+    "pin": "gpio_out_south[44]",
+    "direction": "output"
+  },
+  "mem_la_wdata[25]": {
+    "pin": "gpio_out_south[45]",
+    "direction": "output"
+  },
+  "mem_la_wdata[26]": {
+    "pin": "gpio_out_south[46]",
+    "direction": "output"
+  },
+  "mem_la_wdata[27]": {
+    "pin": "gpio_out_south[47]",
+    "direction": "output"
+  },
+  "mem_la_wdata[28]": {
+    "pin": "gpio_out_south[48]",
+    "direction": "output"
+  },
+  "mem_la_wdata[29]": {
+    "pin": "gpio_out_south[49]",
+    "direction": "output"
+  },
+  "mem_la_wdata[30]": {
+    "pin": "gpio_out_south[50]",
+    "direction": "output"
+  },
+  "mem_la_wdata[31]": {
+    "pin": "gpio_out_south[51]",
+    "direction": "output"
+  },
+  "mem_la_wstrb[0]": {
+    "pin": "gpio_out_south[60]",
+    "direction": "output"
+  },
+  "mem_la_wstrb[1]": {
+    "pin": "gpio_out_south[61]",
+    "direction": "output"
+  },
+  "mem_la_wstrb[2]": {
+    "pin": "gpio_out_south[62]",
+    "direction": "output"
+  },
+  "mem_la_wstrb[3]": {
+    "pin": "gpio_out_south[63]",
+    "direction": "output"
+  },
+  "pcpi_insn[0]": {
+    "pin": "gpio_out_south[100]",
+    "direction": "output"
+  },
+  "pcpi_insn[1]": {
+    "pin": "gpio_out_south[101]",
+    "direction": "output"
+  },
+  "pcpi_insn[2]": {
+    "pin": "gpio_out_south[102]",
+    "direction": "output"
+  },
+  "pcpi_insn[3]": {
+    "pin": "gpio_out_south[103]",
+    "direction": "output"
+  },
+  "pcpi_insn[4]": {
+    "pin": "gpio_out_south[104]",
+    "direction": "output"
+  },
+  "pcpi_insn[5]": {
+    "pin": "gpio_out_south[105]",
+    "direction": "output"
+  },
+  "pcpi_insn[6]": {
+    "pin": "gpio_out_south[106]",
+    "direction": "output"
+  },
+  "pcpi_insn[7]": {
+    "pin": "gpio_out_south[107]",
+    "direction": "output"
+  },
+  "pcpi_insn[8]": {
+    "pin": "gpio_out_south[108]",
+    "direction": "output"
+  },
+  "pcpi_insn[9]": {
+    "pin": "gpio_out_south[109]",
+    "direction": "output"
+  },
+  "pcpi_insn[10]": {
+    "pin": "gpio_out_south[110]",
+    "direction": "output"
+  },
+  "pcpi_insn[11]": {
+    "pin": "gpio_out_south[111]",
+    "direction": "output"
+  },
+  "pcpi_insn[12]": {
+    "pin": "gpio_out_south[112]",
+    "direction": "output"
+  },
+  "pcpi_insn[13]": {
+    "pin": "gpio_out_south[113]",
+    "direction": "output"
+  },
+  "pcpi_insn[14]": {
+    "pin": "gpio_out_south[114]",
+    "direction": "output"
+  },
+  "pcpi_insn[15]": {
+    "pin": "gpio_out_south[115]",
+    "direction": "output"
+  },
+  "pcpi_insn[16]": {
+    "pin": "gpio_out_south[116]",
+    "direction": "output"
+  },
+  "pcpi_insn[17]": {
+    "pin": "gpio_out_south[117]",
+    "direction": "output"
+  },
+  "pcpi_insn[18]": {
+    "pin": "gpio_out_south[118]",
+    "direction": "output"
+  },
+  "pcpi_insn[19]": {
+    "pin": "gpio_out_south[119]",
+    "direction": "output"
+  },
+  "pcpi_insn[20]": {
+    "pin": "gpio_out_south[120]",
+    "direction": "output"
+  },
+  "pcpi_insn[21]": {
+    "pin": "gpio_out_south[121]",
+    "direction": "output"
+  },
+  "pcpi_insn[22]": {
+    "pin": "gpio_out_south[122]",
+    "direction": "output"
+  },
+  "pcpi_insn[23]": {
+    "pin": "gpio_out_south[123]",
+    "direction": "output"
+  },
+  "pcpi_insn[24]": {
+    "pin": "gpio_out_south[124]",
+    "direction": "output"
+  },
+  "pcpi_insn[25]": {
+    "pin": "gpio_out_south[125]",
+    "direction": "output"
+  },
+  "pcpi_insn[26]": {
+    "pin": "gpio_out_south[126]",
+    "direction": "output"
+  },
+  "pcpi_insn[27]": {
+    "pin": "gpio_out_south[127]",
+    "direction": "output"
+  },
+  "pcpi_insn[28]": {
+    "pin": "gpio_out_south[128]",
+    "direction": "output"
+  },
+  "pcpi_insn[29]": {
+    "pin": "gpio_out_south[129]",
+    "direction": "output"
+  },
+  "pcpi_insn[30]": {
+    "pin": "gpio_out_south[130]",
+    "direction": "output"
+  },
+  "pcpi_insn[31]": {
+    "pin": "gpio_out_south[131]",
+    "direction": "output"
+  },
+  "pcpi_rs1[0]": {
+    "pin": "gpio_out_south[140]",
+    "direction": "output"
+  },
+  "pcpi_rs1[1]": {
+    "pin": "gpio_out_south[141]",
+    "direction": "output"
+  },
+  "pcpi_rs1[2]": {
+    "pin": "gpio_out_south[142]",
+    "direction": "output"
+  },
+  "pcpi_rs1[3]": {
+    "pin": "gpio_out_south[143]",
+    "direction": "output"
+  },
+  "pcpi_rs1[4]": {
+    "pin": "gpio_out_south[144]",
+    "direction": "output"
+  },
+  "pcpi_rs1[5]": {
+    "pin": "gpio_out_south[145]",
+    "direction": "output"
+  },
+  "pcpi_rs1[6]": {
+    "pin": "gpio_out_south[146]",
+    "direction": "output"
+  },
+  "pcpi_rs1[7]": {
+    "pin": "gpio_out_south[147]",
+    "direction": "output"
+  },
+  "pcpi_rs1[8]": {
+    "pin": "gpio_out_south[148]",
+    "direction": "output"
+  },
+  "pcpi_rs1[9]": {
+    "pin": "gpio_out_south[149]",
+    "direction": "output"
+  },
+  "pcpi_rs1[10]": {
+    "pin": "gpio_out_south[150]",
+    "direction": "output"
+  },
+  "pcpi_rs1[11]": {
+    "pin": "gpio_out_south[151]",
+    "direction": "output"
+  },
+  "pcpi_rs1[12]": {
+    "pin": "gpio_out_south[152]",
+    "direction": "output"
+  },
+  "pcpi_rs1[13]": {
+    "pin": "gpio_out_south[153]",
+    "direction": "output"
+  },
+  "pcpi_rs1[14]": {
+    "pin": "gpio_out_south[154]",
+    "direction": "output"
+  },
+  "pcpi_rs1[15]": {
+    "pin": "gpio_out_south[155]",
+    "direction": "output"
+  },
+  "pcpi_rs1[16]": {
+    "pin": "gpio_out_south[156]",
+    "direction": "output"
+  },
+  "pcpi_rs1[17]": {
+    "pin": "gpio_out_south[157]",
+    "direction": "output"
+  },
+  "pcpi_rs1[18]": {
+    "pin": "gpio_out_south[158]",
+    "direction": "output"
+  },
+  "pcpi_rs1[19]": {
+    "pin": "gpio_out_south[159]",
+    "direction": "output"
+  },
+  "pcpi_rs1[20]": {
+    "pin": "gpio_out_south[160]",
+    "direction": "output"
+  },
+  "pcpi_rs1[21]": {
+    "pin": "gpio_out_south[161]",
+    "direction": "output"
+  },
+  "pcpi_rs1[22]": {
+    "pin": "gpio_out_south[162]",
+    "direction": "output"
+  },
+  "pcpi_rs1[23]": {
+    "pin": "gpio_out_south[163]",
+    "direction": "output"
+  },
+  "pcpi_rs1[24]": {
+    "pin": "gpio_out_south[164]",
+    "direction": "output"
+  },
+  "pcpi_rs1[25]": {
+    "pin": "gpio_out_south[165]",
+    "direction": "output"
+  },
+  "pcpi_rs1[26]": {
+    "pin": "gpio_out_south[166]",
+    "direction": "output"
+  },
+  "pcpi_rs1[27]": {
+    "pin": "gpio_out_south[167]",
+    "direction": "output"
+  },
+  "pcpi_rs1[28]": {
+    "pin": "gpio_out_south[168]",
+    "direction": "output"
+  },
+  "pcpi_rs1[29]": {
+    "pin": "gpio_out_south[169]",
+    "direction": "output"
+  },
+  "pcpi_rs1[30]": {
+    "pin": "gpio_out_south[170]",
+    "direction": "output"
+  },
+  "pcpi_rs1[31]": {
+    "pin": "gpio_out_south[171]",
+    "direction": "output"
+  },
+  "pcpi_rs2[0]": {
+    "pin": "gpio_out_south[180]",
+    "direction": "output"
+  },
+  "pcpi_rs2[1]": {
+    "pin": "gpio_out_south[181]",
+    "direction": "output"
+  },
+  "pcpi_rs2[2]": {
+    "pin": "gpio_out_south[182]",
+    "direction": "output"
+  },
+  "pcpi_rs2[3]": {
+    "pin": "gpio_out_south[183]",
+    "direction": "output"
+  },
+  "pcpi_rs2[4]": {
+    "pin": "gpio_out_south[184]",
+    "direction": "output"
+  },
+  "pcpi_rs2[5]": {
+    "pin": "gpio_out_south[185]",
+    "direction": "output"
+  },
+  "pcpi_rs2[6]": {
+    "pin": "gpio_out_south[186]",
+    "direction": "output"
+  },
+  "pcpi_rs2[7]": {
+    "pin": "gpio_out_south[187]",
+    "direction": "output"
+  },
+  "pcpi_rs2[8]": {
+    "pin": "gpio_out_south[188]",
+    "direction": "output"
+  },
+  "pcpi_rs2[9]": {
+    "pin": "gpio_out_south[189]",
+    "direction": "output"
+  },
+  "pcpi_rs2[10]": {
+    "pin": "gpio_out_south[190]",
+    "direction": "output"
+  },
+  "pcpi_rs2[11]": {
+    "pin": "gpio_out_south[191]",
+    "direction": "output"
+  },
+  "pcpi_rs2[12]": {
+    "pin": "gpio_out_south[192]",
+    "direction": "output"
+  },
+  "pcpi_rs2[13]": {
+    "pin": "gpio_out_south[193]",
+    "direction": "output"
+  },
+  "pcpi_rs2[14]": {
+    "pin": "gpio_out_south[194]",
+    "direction": "output"
+  },
+  "pcpi_rs2[15]": {
+    "pin": "gpio_out_south[195]",
+    "direction": "output"
+  },
+  "pcpi_rs2[16]": {
+    "pin": "gpio_out_south[196]",
+    "direction": "output"
+  },
+  "pcpi_rs2[17]": {
+    "pin": "gpio_out_south[197]",
+    "direction": "output"
+  },
+  "pcpi_rs2[18]": {
+    "pin": "gpio_out_south[198]",
+    "direction": "output"
+  },
+  "pcpi_rs2[19]": {
+    "pin": "gpio_out_south[199]",
+    "direction": "output"
+  },
+  "pcpi_rs2[20]": {
+    "pin": "gpio_out_south[200]",
+    "direction": "output"
+  },
+  "pcpi_rs2[21]": {
+    "pin": "gpio_out_south[201]",
+    "direction": "output"
+  },
+  "pcpi_rs2[22]": {
+    "pin": "gpio_out_south[202]",
+    "direction": "output"
+  },
+  "pcpi_rs2[23]": {
+    "pin": "gpio_out_south[203]",
+    "direction": "output"
+  },
+  "pcpi_rs2[24]": {
+    "pin": "gpio_out_south[204]",
+    "direction": "output"
+  },
+  "pcpi_rs2[25]": {
+    "pin": "gpio_out_south[205]",
+    "direction": "output"
+  },
+  "pcpi_rs2[26]": {
+    "pin": "gpio_out_south[206]",
+    "direction": "output"
+  },
+  "pcpi_rs2[27]": {
+    "pin": "gpio_out_south[207]",
+    "direction": "output"
+  },
+  "pcpi_rs2[28]": {
+    "pin": "gpio_out_south[208]",
+    "direction": "output"
+  },
+  "pcpi_rs2[29]": {
+    "pin": "gpio_out_south[209]",
+    "direction": "output"
+  },
+  "pcpi_rs2[30]": {
+    "pin": "gpio_out_south[210]",
+    "direction": "output"
+  },
+  "pcpi_rs2[31]": {
+    "pin": "gpio_out_south[211]",
+    "direction": "output"
+  },
+  "pcpi_rd[0]": {
+    "pin": "gpio_in_east[20]",
+    "direction": "input"
+  },
+  "pcpi_rd[1]": {
+    "pin": "gpio_in_east[21]",
+    "direction": "input"
+  },
+  "pcpi_rd[2]": {
+    "pin": "gpio_in_east[22]",
+    "direction": "input"
+  },
+  "pcpi_rd[3]": {
+    "pin": "gpio_in_east[23]",
+    "direction": "input"
+  },
+  "pcpi_rd[4]": {
+    "pin": "gpio_in_east[24]",
+    "direction": "input"
+  },
+  "pcpi_rd[5]": {
+    "pin": "gpio_in_east[25]",
+    "direction": "input"
+  },
+  "pcpi_rd[6]": {
+    "pin": "gpio_in_east[26]",
+    "direction": "input"
+  },
+  "pcpi_rd[7]": {
+    "pin": "gpio_in_east[27]",
+    "direction": "input"
+  },
+  "pcpi_rd[8]": {
+    "pin": "gpio_in_east[28]",
+    "direction": "input"
+  },
+  "pcpi_rd[9]": {
+    "pin": "gpio_in_east[29]",
+    "direction": "input"
+  },
+  "pcpi_rd[10]": {
+    "pin": "gpio_in_east[30]",
+    "direction": "input"
+  },
+  "pcpi_rd[11]": {
+    "pin": "gpio_in_east[31]",
+    "direction": "input"
+  },
+  "pcpi_rd[12]": {
+    "pin": "gpio_in_east[32]",
+    "direction": "input"
+  },
+  "pcpi_rd[13]": {
+    "pin": "gpio_in_east[33]",
+    "direction": "input"
+  },
+  "pcpi_rd[14]": {
+    "pin": "gpio_in_east[34]",
+    "direction": "input"
+  },
+  "pcpi_rd[15]": {
+    "pin": "gpio_in_east[35]",
+    "direction": "input"
+  },
+  "pcpi_rd[16]": {
+    "pin": "gpio_in_east[36]",
+    "direction": "input"
+  },
+  "pcpi_rd[17]": {
+    "pin": "gpio_in_east[37]",
+    "direction": "input"
+  },
+  "pcpi_rd[18]": {
+    "pin": "gpio_in_east[38]",
+    "direction": "input"
+  },
+  "pcpi_rd[19]": {
+    "pin": "gpio_in_east[39]",
+    "direction": "input"
+  },
+  "pcpi_rd[20]": {
+    "pin": "gpio_in_east[40]",
+    "direction": "input"
+  },
+  "pcpi_rd[21]": {
+    "pin": "gpio_in_east[41]",
+    "direction": "input"
+  },
+  "pcpi_rd[22]": {
+    "pin": "gpio_in_east[42]",
+    "direction": "input"
+  },
+  "pcpi_rd[23]": {
+    "pin": "gpio_in_east[43]",
+    "direction": "input"
+  },
+  "pcpi_rd[24]": {
+    "pin": "gpio_in_east[44]",
+    "direction": "input"
+  },
+  "pcpi_rd[25]": {
+    "pin": "gpio_in_east[45]",
+    "direction": "input"
+  },
+  "pcpi_rd[26]": {
+    "pin": "gpio_in_east[46]",
+    "direction": "input"
+  },
+  "pcpi_rd[27]": {
+    "pin": "gpio_in_east[47]",
+    "direction": "input"
+  },
+  "pcpi_rd[28]": {
+    "pin": "gpio_in_east[48]",
+    "direction": "input"
+  },
+  "pcpi_rd[29]": {
+    "pin": "gpio_in_east[49]",
+    "direction": "input"
+  },
+  "pcpi_rd[30]": {
+    "pin": "gpio_in_east[50]",
+    "direction": "input"
+  },
+  "pcpi_rd[31]": {
+    "pin": "gpio_in_east[51]",
+    "direction": "input"
+  },
+  "eoi[0]": {
+    "pin": "gpio_out_west[220]",
+    "direction": "output"
+  },
+  "eoi[1]": {
+    "pin": "gpio_out_west[221]",
+    "direction": "output"
+  },
+  "eoi[2]": {
+    "pin": "gpio_out_west[222]",
+    "direction": "output"
+  },
+  "eoi[3]": {
+    "pin": "gpio_out_west[223]",
+    "direction": "output"
+  },
+  "eoi[4]": {
+    "pin": "gpio_out_west[224]",
+    "direction": "output"
+  },
+  "eoi[5]": {
+    "pin": "gpio_out_west[225]",
+    "direction": "output"
+  },
+  "eoi[6]": {
+    "pin": "gpio_out_west[226]",
+    "direction": "output"
+  },
+  "eoi[7]": {
+    "pin": "gpio_out_west[227]",
+    "direction": "output"
+  },
+  "eoi[8]": {
+    "pin": "gpio_out_west[228]",
+    "direction": "output"
+  },
+  "eoi[9]": {
+    "pin": "gpio_out_west[229]",
+    "direction": "output"
+  },
+  "eoi[10]": {
+    "pin": "gpio_out_west[230]",
+    "direction": "output"
+  },
+  "eoi[11]": {
+    "pin": "gpio_out_west[231]",
+    "direction": "output"
+  },
+  "eoi[12]": {
+    "pin": "gpio_out_west[232]",
+    "direction": "output"
+  },
+  "eoi[13]": {
+    "pin": "gpio_out_west[233]",
+    "direction": "output"
+  },
+  "eoi[14]": {
+    "pin": "gpio_out_west[234]",
+    "direction": "output"
+  },
+  "eoi[15]": {
+    "pin": "gpio_out_west[235]",
+    "direction": "output"
+  },
+  "eoi[16]": {
+    "pin": "gpio_out_west[236]",
+    "direction": "output"
+  },
+  "eoi[17]": {
+    "pin": "gpio_out_west[237]",
+    "direction": "output"
+  },
+  "eoi[18]": {
+    "pin": "gpio_out_west[238]",
+    "direction": "output"
+  },
+  "eoi[19]": {
+    "pin": "gpio_out_west[239]",
+    "direction": "output"
+  },
+  "eoi[20]": {
+    "pin": "gpio_out_west[240]",
+    "direction": "output"
+  },
+  "eoi[21]": {
+    "pin": "gpio_out_west[241]",
+    "direction": "output"
+  },
+  "eoi[22]": {
+    "pin": "gpio_out_west[242]",
+    "direction": "output"
+  },
+  "eoi[23]": {
+    "pin": "gpio_out_west[243]",
+    "direction": "output"
+  },
+  "eoi[24]": {
+    "pin": "gpio_out_west[244]",
+    "direction": "output"
+  },
+  "eoi[25]": {
+    "pin": "gpio_out_west[245]",
+    "direction": "output"
+  },
+  "eoi[26]": {
+    "pin": "gpio_out_west[246]",
+    "direction": "output"
+  },
+  "eoi[27]": {
+    "pin": "gpio_out_west[247]",
+    "direction": "output"
+  },
+  "eoi[28]": {
+    "pin": "gpio_out_west[248]",
+    "direction": "output"
+  },
+  "eoi[29]": {
+    "pin": "gpio_out_west[249]",
+    "direction": "output"
+  },
+  "eoi[30]": {
+    "pin": "gpio_out_west[250]",
+    "direction": "output"
+  },
+  "eoi[31]": {
+    "pin": "gpio_out_west[251]",
+    "direction": "output"
+  },
+  "irq[0]": {
+    "pin": "gpio_in_west[60]",
+    "direction": "input"
+  },
+  "irq[1]": {
+    "pin": "gpio_in_west[61]",
+    "direction": "input"
+  },
+  "irq[2]": {
+    "pin": "gpio_in_west[62]",
+    "direction": "input"
+  },
+  "irq[3]": {
+    "pin": "gpio_in_west[63]",
+    "direction": "input"
+  },
+  "irq[4]": {
+    "pin": "gpio_in_west[64]",
+    "direction": "input"
+  },
+  "irq[5]": {
+    "pin": "gpio_in_west[65]",
+    "direction": "input"
+  },
+  "irq[6]": {
+    "pin": "gpio_in_west[66]",
+    "direction": "input"
+  },
+  "irq[7]": {
+    "pin": "gpio_in_west[67]",
+    "direction": "input"
+  },
+  "irq[8]": {
+    "pin": "gpio_in_west[68]",
+    "direction": "input"
+  },
+  "irq[9]": {
+    "pin": "gpio_in_west[69]",
+    "direction": "input"
+  },
+  "irq[10]": {
+    "pin": "gpio_in_west[70]",
+    "direction": "input"
+  },
+  "irq[11]": {
+    "pin": "gpio_in_west[71]",
+    "direction": "input"
+  },
+  "irq[12]": {
+    "pin": "gpio_in_west[72]",
+    "direction": "input"
+  },
+  "irq[13]": {
+    "pin": "gpio_in_west[73]",
+    "direction": "input"
+  },
+  "irq[14]": {
+    "pin": "gpio_in_west[74]",
+    "direction": "input"
+  },
+  "irq[15]": {
+    "pin": "gpio_in_west[75]",
+    "direction": "input"
+  },
+  "irq[16]": {
+    "pin": "gpio_in_west[76]",
+    "direction": "input"
+  },
+  "irq[17]": {
+    "pin": "gpio_in_west[77]",
+    "direction": "input"
+  },
+  "irq[18]": {
+    "pin": "gpio_in_west[78]",
+    "direction": "input"
+  },
+  "irq[19]": {
+    "pin": "gpio_in_west[79]",
+    "direction": "input"
+  },
+  "irq[20]": {
+    "pin": "gpio_in_west[80]",
+    "direction": "input"
+  },
+  "irq[21]": {
+    "pin": "gpio_in_west[81]",
+    "direction": "input"
+  },
+  "irq[22]": {
+    "pin": "gpio_in_west[82]",
+    "direction": "input"
+  },
+  "irq[23]": {
+    "pin": "gpio_in_west[83]",
+    "direction": "input"
+  },
+  "irq[24]": {
+    "pin": "gpio_in_west[84]",
+    "direction": "input"
+  },
+  "irq[25]": {
+    "pin": "gpio_in_west[85]",
+    "direction": "input"
+  },
+  "irq[26]": {
+    "pin": "gpio_in_west[86]",
+    "direction": "input"
+  },
+  "irq[27]": {
+    "pin": "gpio_in_west[87]",
+    "direction": "input"
+  },
+  "irq[28]": {
+    "pin": "gpio_in_west[88]",
+    "direction": "input"
+  },
+  "irq[29]": {
+    "pin": "gpio_in_west[89]",
+    "direction": "input"
+  },
+  "irq[30]": {
+    "pin": "gpio_in_west[90]",
+    "direction": "input"
+  },
+  "irq[31]": {
+    "pin": "gpio_in_west[91]",
+    "direction": "input"
+  },
+  "trace_data[0]": {
+    "pin": "gpio_out_west[260]",
+    "direction": "output"
+  },
+  "trace_data[1]": {
+    "pin": "gpio_out_west[261]",
+    "direction": "output"
+  },
+  "trace_data[2]": {
+    "pin": "gpio_out_west[262]",
+    "direction": "output"
+  },
+  "trace_data[3]": {
+    "pin": "gpio_out_west[263]",
+    "direction": "output"
+  },
+  "trace_data[4]": {
+    "pin": "gpio_out_west[264]",
+    "direction": "output"
+  },
+  "trace_data[5]": {
+    "pin": "gpio_out_west[265]",
+    "direction": "output"
+  },
+  "trace_data[6]": {
+    "pin": "gpio_out_west[266]",
+    "direction": "output"
+  },
+  "trace_data[7]": {
+    "pin": "gpio_out_west[267]",
+    "direction": "output"
+  },
+  "trace_data[8]": {
+    "pin": "gpio_out_west[268]",
+    "direction": "output"
+  },
+  "trace_data[9]": {
+    "pin": "gpio_out_west[269]",
+    "direction": "output"
+  },
+  "trace_data[10]": {
+    "pin": "gpio_out_west[270]",
+    "direction": "output"
+  },
+  "trace_data[11]": {
+    "pin": "gpio_out_west[271]",
+    "direction": "output"
+  },
+  "trace_data[12]": {
+    "pin": "gpio_out_west[272]",
+    "direction": "output"
+  },
+  "trace_data[13]": {
+    "pin": "gpio_out_west[273]",
+    "direction": "output"
+  },
+  "trace_data[14]": {
+    "pin": "gpio_out_west[274]",
+    "direction": "output"
+  },
+  "trace_data[15]": {
+    "pin": "gpio_out_west[275]",
+    "direction": "output"
+  },
+  "trace_data[16]": {
+    "pin": "gpio_out_west[276]",
+    "direction": "output"
+  },
+  "trace_data[17]": {
+    "pin": "gpio_out_west[277]",
+    "direction": "output"
+  },
+  "trace_data[18]": {
+    "pin": "gpio_out_west[278]",
+    "direction": "output"
+  },
+  "trace_data[19]": {
+    "pin": "gpio_out_west[279]",
+    "direction": "output"
+  },
+  "trace_data[20]": {
+    "pin": "gpio_out_west[280]",
+    "direction": "output"
+  },
+  "trace_data[21]": {
+    "pin": "gpio_out_west[281]",
+    "direction": "output"
+  },
+  "trace_data[22]": {
+    "pin": "gpio_out_west[282]",
+    "direction": "output"
+  },
+  "trace_data[23]": {
+    "pin": "gpio_out_west[283]",
+    "direction": "output"
+  },
+  "trace_data[24]": {
+    "pin": "gpio_out_west[284]",
+    "direction": "output"
+  },
+  "trace_data[25]": {
+    "pin": "gpio_out_west[285]",
+    "direction": "output"
+  },
+  "trace_data[26]": {
+    "pin": "gpio_out_west[286]",
+    "direction": "output"
+  },
+  "trace_data[27]": {
+    "pin": "gpio_out_west[287]",
+    "direction": "output"
+  },
+  "trace_data[28]": {
+    "pin": "gpio_out_west[288]",
+    "direction": "output"
+  },
+  "trace_data[29]": {
+    "pin": "gpio_out_west[289]",
+    "direction": "output"
+  },
+  "trace_data[30]": {
+    "pin": "gpio_out_west[290]",
+    "direction": "output"
+  },
+  "trace_data[31]": {
+    "pin": "gpio_out_west[291]",
+    "direction": "output"
+  },
+  "trace_data[32]": {
+    "pin": "gpio_out_west[292]",
+    "direction": "output"
+  },
+  "trace_data[33]": {
+    "pin": "gpio_out_west[293]",
+    "direction": "output"
+  },
+  "trace_data[34]": {
+    "pin": "gpio_out_west[294]",
+    "direction": "output"
+  },
+  "trace_data[35]": {
+    "pin": "gpio_out_west[295]",
+    "direction": "output"
+  }
+}

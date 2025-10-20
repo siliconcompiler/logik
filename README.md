@@ -85,8 +85,9 @@ if __name__ == "__main__":
 
 ## Examples
 
-* [Ethernet](./examples/eth_mac_1g/eth_mac_1g.py): Ethernet MAC compiled for `z1000` architecture
-* [Adder](examples/adder/adder.py): Small adder example compiled for a virtual VPR architecture.
+* [Ethernet](./examples/eth_mac_1g/eth_mac_1g.py): Ethernet MAC compiled for the `z1000` architecture
+* [Adder](examples/adder/adder.py): Small adder example compiled for the `z1000` architecture.
+* [Picorv32](examples/picorv32/picorv32.py): picorv32 RISC-V CPU example compiled for the `z1062` architecture.
 
 ## Documentation
 
