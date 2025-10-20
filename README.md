@@ -59,12 +59,12 @@ def hello_adder():
     design.add_file('adder.v', fileset="rtl")
     design.set_topmodule('adder', fileset="rtl")
 
-    # Create an FPGA object with a -remote command line option
+    # Create an FPGA object and associate the design with it.
     project = siliconcompiler.FPGA(design)
 
     project.add_fileset('rtl')
 
-    # Create an FPGA object and associate the design with it.
+    # Instantiate a part object.
     fpga = z1000.z1000()
 
     # Load the specific FPGA part, which also sets the default flow and libraries.
