@@ -3,7 +3,8 @@ Installing Required Software
 
 There are two ways to install the above software tools:
     1. Run within the Silicon Compiler tools docker image
-    2. Build from source yourself
+    2. Use Silicon Compiler's sc-install command for FPGAs
+    3. Build from source yourself
 
 Silicon Compiler Tools Docker Image Setup
 -----------------------------------------
@@ -24,6 +25,15 @@ Once Docker is installed, launch the Docker Desktop application.
    
    docker run -it -v "${PWD}/sc_work:/sc_work" ghcr.io/siliconcompiler/sc_runner:latest
        
+Silicon Compiler sc-install Tool
+--------------------------------
+
+When Silicon Compiler has been installed in your Python virtual environment, all required software can be installed by running
+
+::
+
+   sc-install -group fpga
+
 Building Software From Source
 -----------------------------
 
