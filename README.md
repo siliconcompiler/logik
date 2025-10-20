@@ -16,7 +16,7 @@ Logik supports most of the features you would expect in a commercial proprietary
 | Feature                  | Status |
 |--------------------------|--------|
 | Design languages         | SystemVerilog, Verilog, VHDL
-| ALU synthesis            | Supported
+| DSP synthesis            | Supported
 | RAM synthesis            | Supported
 | Timing constraints (SDC) | Supported
 | Pin Constraints (PCF)    | Supported
@@ -46,47 +46,39 @@ The following example illustrate some essential Logik features. For complete doc
 ```python
 
 import siliconcompiler
-
 from logik.flows.logik_flow import LogikFlow
-
 from logiklib.zeroasic.z1000 import z1000
 
+# 1. Create a Design object to hold source files and constraints.
+design = siliconcompiler.Design('adder')
+design.add_file('adder.v', fileset="rtl")
+design.set_topmodule('adder', fileset="rtl")
 
-def hello_adder():
-    # 1. Create a Design object to hold source files and constraints.
-    design = siliconcompiler.Design('adder')
+# 2. Create an FPGA project
+project = siliconcompiler.FPGA(design)
 
-    design.add_file('adder.v', fileset="rtl")
-    design.set_topmodule('adder', fileset="rtl")
+# 3. Assign file sets to use for elaboration 
+project.add_fileset('rtl')
 
-    # 2. Create an FPGA object with a -remote command line option
-    project = siliconcompiler.FPGA(design)
+# 4. Select the rtl2bits flow to use 
+project.set_flow(LogikFlow())
 
-    project.add_fileset('rtl')
+# 5. Load FPGA part settings and associated flow and libraries.
+project.set_fpga(z1000.z1000())
 
-    # 2. Create an FPGA object and associate the design with it.
-    fpga = z1000.z1000()
+# 6. User defined options
+project.option.set_quiet(True)
 
-    # 3. Load the specific FPGA part, which also sets the default flow and libraries.
-    project.set_fpga(fpga)
+# 7. Run compilatin
+project.run()
 
-    #  Use the specific flow for this build.
-    project.set_flow(LogikFlow())
-
-    # # Customize steps for this design
-    project.option.set_quiet(True)
-
-    # Run the compilation.
-    project.run()
-
-    # Display the results summary.
-    project.summary()
-
-
-if __name__ == "__main__":
-    hello_adder()
+#6. Display summary of results
+project.summary()
 
 ```
+
+> [!NOTE]
+> The required files can be found at: [heartbeat example](https://github.com/siliconcompiler/logik/tree/main/examples/adder)
 
 ## Examples
 
@@ -113,7 +105,8 @@ Running natively on your local machine will require installing a number of prere
 * [Silicon Compiler](https://github.com/siliconcompiler/siliconcompiler): Hardware compiler framework
 * [Slang](https://github.com/MikePopoloski/slang): SystemVerilog Parser
 * [GHDL](https://ghdl.github.io/ghdl/): VHDL parser
-* [Yosys](https://github.com/YosysHQ/yosys): Logic synthesis
+* [Yosys](https://github.com/YosysHQ/yosys): Logic synthesis platform
+* [Wildebeest](https://github.com/zeroasiccorp/wildebeest): High performance synthesis yosys plugin
 * [VPR](https://github.com/verilog-to-routing/vtr-verilog-to-routing): FPGA place and route
 * [FASM](https://github.com/chipsalliance/fasm): FPGA assembly parser and generator
 
