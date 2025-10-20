@@ -17,6 +17,8 @@ def hello_adder():
     design.add_file('adder.v', fileset="rtl")
     design.set_topmodule('adder', fileset="rtl")
 
+    design.set('fileset', 'rtl', 'file', 'verilog', True, field='copy')
+
     # 2. Create an FPGA object with a -remote command line option
     project = siliconcompiler.FPGA.create_cmdline(switchlist=['-remote'])
     project.set_design(design)

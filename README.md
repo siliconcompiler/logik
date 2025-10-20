@@ -50,33 +50,35 @@ from logiklib.demo.K4_N8_6x6 import K4_N8_6x6
 
 
 def hello_adder():
+    # 1. Create a Design object to hold source files and constraints.
+    design = siliconcompiler.Design('adder')
 
-    # Create compilation object
-    chip = Chip('adder')
-    chip.create_cmdline(switchlist=['-remote'])
+    design.add_file('adder.v', fileset="rtl")
+    design.set_topmodule('adder', fileset="rtl")
 
-    # Specify design sources
-    chip.input('adder.v')
+    # 2. Create an FPGA object with a -remote command line option
+    project = siliconcompiler.FPGA.create_cmdline(switchlist=['-remote'])
+    project.set_design(design)
 
-    # Specify pin constraints
-    chip.input('adder.pcf')
+    project.add_fileset('rtl')
 
-    # Compiler options
-    chip.set('option', 'quiet', True)
+    # 2. Create an FPGA object and associate the design with it.
+    fpga = z1000.z1000()
 
-    # Select target fpga
-    chip.set('fpga', 'partname', 'K4_N8_6x6')
+    # 3. Load the specific FPGA part, which also sets the default flow and libraries.
+    project.set_fpga(fpga)
 
-    # Load target settings
-    chip.set('option', 'flow', 'logik_flow')
-    chip.use(logik_flow)
-    chip.use(K4_N8_6x6)
+    #  Use the specific flow for this build.
+    project.set_flow(LogikFlow())
 
-    # Run compiler
-    chip.run()
+    # # Customize steps for this design
+    project.option.set_quiet(True)
 
-    # Display compiler results
-    chip.summary()
+    # Run the compilation.
+    project.run()
+
+    # Display the results summary.
+    project.summary()
 
 if __name__ == "__main__":
     hello_adder()
