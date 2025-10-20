@@ -39,9 +39,6 @@ packages = [
     "logik"
 ]
 
-[tool.setuptools.packages.find]
-namespaces = false
-
 [tool.pytest.ini_options]
 testpaths = "tests"
 timeout = "180"
