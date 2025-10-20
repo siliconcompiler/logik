@@ -3,7 +3,7 @@
 
 import siliconcompiler
 
-from logik.demo.z1000 import z1000
+from data.z1000 import z1000
 
 
 def test_file_paths():
