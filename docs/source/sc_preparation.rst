@@ -12,13 +12,14 @@ Constructing a Silicon Compiler run script can be broken down into the following
 
 * :ref:`import_modules`
 * :ref:`Create_main_function`
-* :ref:`Create_chip_object`
+* :ref:`Create_design_object`
 * :ref:`Select_part_name`
-* :ref:`Register_packages`
 * :ref:`Import_libraries`
-* :ref:`Set_input_source_files`
 * :ref:`Set_timing_constraints`
 * :ref:`Set_pin_constraints`
+* :ref:`Create_project_object`
+* :ref:`Select_part_name`
+* :ref:`Select_flow`
 * :ref:`Add_options`
 * :ref:`Configure_remote_execution`
 * :ref:`Add_execution_calls`
@@ -69,7 +70,6 @@ Create Design Object
 ====================
 
 Silicon Compiler design information is encapsulated in a Python class called Design.
-An instance of this class is required for all Silicon Compiler run scripts and is commonly referred to as the chip object.
 
 The Design class constructor requires one parameter: the name of the top level module in your RTL design.
 A complete Design instantiation takes the form
@@ -95,6 +95,8 @@ All HDL source files must be added to the Silicon Compiler design object for inc
 2.  Add all source files located at the given data root
 
 The procedure below may be repeated for as many data roots as required.
+
+.. _Set_dataroot:
 
 Setting a Source File Data Root
 -------------------------------
@@ -221,7 +223,7 @@ The FPGA class constructor requires one parameter: an instance of a Design objec
 Following the variable names used above, `<your_design_name>` would be replaced with `design`.
 
 Add filesets to Project
-=======================
+-----------------------
 
 All filenet names used in specifying design data must be added to the project.  This is done with the Project class's `add_fileset` function.  Typically there will be three filesets to add:  one for HDL files, one for SDC, and one for pin constraints:
 
