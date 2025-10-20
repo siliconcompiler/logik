@@ -1,13 +1,10 @@
-![Logik](https://raw.githubusercontent.com/siliconcompiler/logik/main/images/logik_logo_with_text.png)
-
 [![Regression](https://github.com/siliconcompiler/logik/actions/workflows/regression.yml/badge.svg)](https://github.com/siliconcompiler/logik/actions/workflows/regression.yml)
 [![Lint](https://github.com/siliconcompiler/logik/actions/workflows/lint.yml/badge.svg)](https://github.com/siliconcompiler/logik/actions/workflows/lint.yml)
 
+Logik
 -----------------------------------------------------------------------------------
 
-Logik is an open source FPGA tool chain with support for high level language parsing, synthesis, placement, routing, bit-stream generation, and analysis. Users enter design sources, constraints, and compile options through a simple [SiliconCompiler](https://github.com/siliconcompiler/siliconcompiler/) Python API. Once setup is complete, automated compilation can be initiated with a single line run command.
-
-Logik depends on the [Logiklib](https://github.com/siliconcompiler/logiklib) which contains the architecture descriptions and device setup files needed to drive the Logik flow.
+Logik is an open source FPGA tool chain with support for high level language parsing, synthesis, placement, routing, bit-stream generation, and analysis. Users enter design sources, constraints, and compile options through a simple [SiliconCompiler](https://github.com/siliconcompiler/siliconcompiler/) Python API. Once setup is complete, automated compilation can be initiated with a single line run command. Logik relies on the [Logiklib](https://github.com/siliconcompiler/logiklib) project for all architecture and device descriptions.
 
 ![logik_flow](https://raw.githubusercontent.com/siliconcompiler/logik/main/images/logik_flow.svg)
 
@@ -57,10 +54,10 @@ design.set_topmodule('adder', fileset="rtl")
 # 2. Create an FPGA project
 project = siliconcompiler.FPGA(design)
 
-# 3. Assign file sets to use for elaboration 
+# 3. Assign file sets to use for elaboration
 project.add_fileset('rtl')
 
-# 4. Select the rtl2bits flow to use 
+# 4. Select the rtl2bits flow to use
 project.set_flow(LogikFlow())
 
 # 5. Load FPGA part settings and associated flow and libraries.
