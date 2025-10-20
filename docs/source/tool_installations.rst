@@ -3,7 +3,7 @@ Installing Required Software
 
 There are two ways to install the above software tools:
     1. Run within the Silicon Compiler tools docker image
-    2. Use Silicon Compiler's sc-install command for FPGAs
+    2. Use Silicon Compiler's sc-install command
     3. Build from source yourself
 
 Silicon Compiler Tools Docker Image Setup
@@ -33,6 +33,7 @@ When Silicon Compiler has been installed in your Python virtual environment, all
 ::
 
    sc-install -group fpga
+   sc-install opensta
 
 Building Software From Source
 -----------------------------
