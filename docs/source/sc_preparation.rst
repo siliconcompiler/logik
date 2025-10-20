@@ -21,7 +21,6 @@ Constructing a Silicon Compiler run script can be broken down into the following
 * :ref:`Select_part_name`
 * :ref:`Select_flow`
 * :ref:`Add_options`
-* :ref:`Configure_remote_execution`
 * :ref:`Add_execution_calls`
   
 .. _import_modules:
@@ -303,16 +302,6 @@ Similarly, any HDL parameters that must be set explicitly for synthesis can be s
 
 In both cases, `<fileset>` should have the same value as that used for HDL files (e.g. `rtl`).
    
-.. _Configure_remote_execution:
-   
-Configure Remote Execution (optional)
-=====================================
-
-Silicon Compiler supports job submission to remote servers.
-
-There are multiple ways to enable this execution model.
-Consult `Silicon Compiler remote processing <https://docs.siliconcompiler.com/en/stable/development_guide/remote_processing.html>`_ documentation for details.
-
 .. _Add_execution_calls:
 
 Add Execution Calls
