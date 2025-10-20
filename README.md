@@ -38,6 +38,7 @@ All open source FPGA pre-requisites can be installed via the SiliconCompiler `sc
 
 ```sh
 sc-install -group fpga
+sc-install opensta
 ```
 
 The following example illustrate some essential Logik features. For complete documentation of all options available, see the [SiliconCompiler project](https://github.com/siliconcompiler/siliconcompiler/blob/main/README.md).
