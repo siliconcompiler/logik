@@ -1,13 +1,11 @@
-![Logik](https://raw.githubusercontent.com/siliconcompiler/logik/main/images/logik_logo_with_text.png)
+Logik
+-------------------------------------------------------------
 
 [![Regression](https://github.com/siliconcompiler/logik/actions/workflows/regression.yml/badge.svg)](https://github.com/siliconcompiler/logik/actions/workflows/regression.yml)
 [![Lint](https://github.com/siliconcompiler/logik/actions/workflows/lint.yml/badge.svg)](https://github.com/siliconcompiler/logik/actions/workflows/lint.yml)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
------------------------------------------------------------------------------------
-
-Logik is an open source FPGA tool chain with support for high level language parsing, synthesis, placement, routing, bit-stream generation, and analysis. Users enter design sources, constraints, and compile options through a simple [SiliconCompiler](https://github.com/siliconcompiler/siliconcompiler/) Python API. Once setup is complete, automated compilation can be initiated with a single line run command.
-
-Logik depends on the [Logiklib](https://github.com/siliconcompiler/logiklib) which contains the architecture descriptions and device setup files needed to drive the Logik flow.
+Logik is an open source FPGA tool chain with support for high level language parsing, synthesis, placement, routing, bit-stream generation, and analysis. Users enter design sources, constraints, and compile options through a simple [SiliconCompiler](https://github.com/siliconcompiler/siliconcompiler/) Python API. Once setup is complete, automated compilation can be initiated with a single line run command. Logik relies on the [Logiklib](https://github.com/siliconcompiler/logiklib) project for all architecture and device descriptions.
 
 ![logik_flow](https://raw.githubusercontent.com/siliconcompiler/logik/main/images/logik_flow.svg)
 
@@ -16,7 +14,7 @@ Logik supports most of the features you would expect in a commercial proprietary
 | Feature                  | Status |
 |--------------------------|--------|
 | Design languages         | SystemVerilog, Verilog, VHDL
-| ALU synthesis            | Supported
+| DSP synthesis            | Supported
 | RAM synthesis            | Supported
 | Timing constraints (SDC) | Supported
 | Pin Constraints (PCF)    | Supported
@@ -46,47 +44,39 @@ The following example illustrate some essential Logik features. For complete doc
 ```python
 
 import siliconcompiler
-
 from logik.flows.logik_flow import LogikFlow
-
 from logiklib.zeroasic.z1000 import z1000
 
+# 1. Create a Design object to hold source files and constraints.
+design = siliconcompiler.Design('adder')
+design.add_file('adder.v', fileset="rtl")
+design.set_topmodule('adder', fileset="rtl")
 
-def hello_adder():
-    # Create a Design object to hold source files and constraints.
-    design = siliconcompiler.Design('adder')
+# 2. Create an FPGA project
+project = siliconcompiler.FPGA(design)
 
-    design.add_file('adder.v', fileset="rtl")
-    design.set_topmodule('adder', fileset="rtl")
+# 3. Assign file sets to use for elaboration
+project.add_fileset('rtl')
 
-    # Create an FPGA object with a -remote command line option
-    project = siliconcompiler.FPGA(design)
+# 4. Select the rtl2bits flow to use
+project.set_flow(LogikFlow())
 
-    project.add_fileset('rtl')
+# 5. Load FPGA part settings and associated flow and libraries.
+project.set_fpga(z1000.z1000())
 
-    # Create an FPGA object and associate the design with it.
-    fpga = z1000.z1000()
+# 6. User defined options
+project.option.set_quiet(True)
 
-    # Load the specific FPGA part, which also sets the default flow and libraries.
-    project.set_fpga(fpga)
+# 7. Run compilatin
+project.run()
 
-    #  Use the specific flow for this build.
-    project.set_flow(LogikFlow())
-
-    # Customize steps for this design
-    project.option.set_quiet(True)
-
-    # Run the compilation.
-    project.run()
-
-    # Display the results summary.
-    project.summary()
-
-
-if __name__ == "__main__":
-    hello_adder()
+#6. Display summary of results
+project.summary()
 
 ```
+
+> [!NOTE]
+> The required files can be found at: [heartbeat example](https://github.com/siliconcompiler/logik/tree/main/examples/adder)
 
 ## Examples
 
@@ -113,9 +103,11 @@ Running natively on your local machine will require installing a number of prere
 * [Silicon Compiler](https://github.com/siliconcompiler/siliconcompiler): Hardware compiler framework
 * [Slang](https://github.com/MikePopoloski/slang): SystemVerilog Parser
 * [GHDL](https://ghdl.github.io/ghdl/): VHDL parser
-* [Yosys](https://github.com/YosysHQ/yosys): Logic synthesis
+* [Yosys](https://github.com/YosysHQ/yosys): Logic synthesis platform
+* [Wildebeest](https://github.com/zeroasiccorp/wildebeest): High performance synthesis yosys plugin
 * [VPR](https://github.com/verilog-to-routing/vtr-verilog-to-routing): FPGA place and route
 * [FASM](https://github.com/chipsalliance/fasm): FPGA assembly parser and generator
+* [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA): Production grade static timing analysis engine
 
 We recommend using the SiliconCompiler `sc-install` utility to automatically install the correct versions of all open source FPGA tool dependencies.
 
@@ -128,7 +120,7 @@ Detailed installation instructions can be found in the [SiliconCompiler Installa
 
 ## License
 
-[Apache License 2.0](LICENSE)
+The Logik project is licensed under the open source [Apache License 2.0](LICENSE). For licensing terms of all dependencies, visit depedency repository.
 
 ## Issues / Bugs
 We use [GitHub Issues](https://github.com/siliconcompiler/logik/issues) for tracking requests and bugs.
