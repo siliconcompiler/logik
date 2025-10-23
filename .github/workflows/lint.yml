@@ -20,17 +20,9 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v5
-
-      - name: Setup permissions
-        run: |
-          echo ${{ secrets.ZA_TOKEN }} | gh auth login --with-token
-          gh auth setup-git
-          git config --global url."https://github".insteadOf git://github
-
       - name: Install Requirements
         run: |
-          python3 -m pip install --upgrade pip
-          pip install .[test]
-
-      - name: Lint with Flake8
-        run: flake8 --statistics .
+          python3 -m venv .venv
+          . .venv/bin/activate
+          pip install .[lint]
+          ruff check
