@@ -119,7 +119,7 @@ Detailed installation instructions can be found in the [SiliconCompiler Installa
 
 ## License
 
-The Logik project is licensed under the open source [Apache License 2.0](LICENSE). For licensing terms of all dependencies, visit depedency repository.
+The Logik project is licensed under the open source [Apache License 2.0](LICENSE). For licensing terms of all dependencies, visit dependency repository.
 
 ## Issues / Bugs
 We use [GitHub Issues](https://github.com/siliconcompiler/logik/issues) for tracking requests and bugs.
