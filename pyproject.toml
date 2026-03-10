@@ -27,9 +27,9 @@ version = {attr = "logik.__version__"}
 
 [project.optional-dependencies]
 test = [
-    "pytest >= 7.0.0",
+    "pytest == 9.0.2",
     "pytest-timeout >= 2.0.0",
-    "flake8 >= 5.0.0"
+    "flake8 >= 7.3.0"
 ]
 docs = [
     "Sphinx >= 6.0.0",
