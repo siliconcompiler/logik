@@ -13,11 +13,11 @@ authors = [{name = "Zero ASIC"}]
 description = "Logik is a light weight FPGA tool chain based on mature open source technologies."
 readme = "README.md"
 urls = {Homepage = "https://github.com/siliconcompiler/logik"}
-requires-python = ">= 3.9"
+requires-python = ">= 3.10"
 dependencies = [
-    "logiklib == 0.2.0",
-    "siliconcompiler >= 0.35.1",
-    
+    # Use ~= to allow users to pull in bug fixes and compatible future releases (>= current, < next minor)
+    "logiklib ~= 0.2.0",
+    "siliconcompiler ~= 0.37.2"
 ]
 license = {file = "LICENSE"}
 dynamic = ["version"]
@@ -27,14 +27,14 @@ version = {attr = "logik.__version__"}
 
 [project.optional-dependencies]
 test = [
-    "pytest <= 9.0.2",
-    "pytest-timeout <= 2.4.0",
-    "flake8 <= 7.3.0"
+    "pytest == 9.0.2",
+    "pytest-timeout >= 2.0.0",
+    "flake8 >= 7.3.0"
 ]
 docs = [
-    "Sphinx <= 9.1.0",
-    "sphinx-rtd-theme <= 3.1.0",
-    "autodocsumm == 0.2.14"
+    "Sphinx >= 6.0.0",
+    "sphinx-rtd-theme >= 1.0.0",
+    "autodocsumm >= 0.2.14"
 ]
 
 [tool.setuptools]
