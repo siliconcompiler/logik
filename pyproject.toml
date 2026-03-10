@@ -22,6 +22,9 @@ dependencies = [
 license = {file = "LICENSE"}
 dynamic = ["version"]
 
+[tool.setuptools.dynamic]
+version = {attr = "logik.__version__"}
+
 [project.optional-dependencies]
 test = [
     "pytest >= 7.0.0",
