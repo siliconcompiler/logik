@@ -17,7 +17,7 @@ requires-python = ">= 3.9"
 dependencies = [
     # Use >= to allow users to pull in bug fixes and compatible future versions
     "logiklib >= 0.2.0", 
-    "siliconcompiler ~= 0.35.1"
+    "siliconcompiler ~= 0.37.2"
 ]
 license = {file = "LICENSE"}
 dynamic = ["version"]
