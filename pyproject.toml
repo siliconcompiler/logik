@@ -13,7 +13,7 @@ authors = [{name = "Zero ASIC"}]
 description = "Logik is a light weight FPGA tool chain based on mature open source technologies."
 readme = "README.md"
 urls = {Homepage = "https://github.com/siliconcompiler/logik"}
-requires-python = ">= 3.9"
+requires-python = ">= 3.10"
 dependencies = [
     # Use ~= to allow users to pull in bug fixes and compatible future releases (>= current, < next minor)
     "logiklib ~= 0.2.0",
