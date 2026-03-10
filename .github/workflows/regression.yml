@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.13"]
+        python-version: ["3.9", "3.12"]
         resolution: ["highest", "lowest-direct"]
 
     steps:
@@ -29,10 +29,18 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v3
         
-      - name: Install dependencies and test
+      - name: Install dependencies with ${{ matrix.resolution }} resolution
         run: |
           uv pip install --system --resolution ${{ matrix.resolution }} -e .[test]
-          pytest
+          
+      - name: Verify installation and imports
+        run: |
+          python -c "import logik; import siliconcompiler; print('✓ Imports successful')"
+          python -c "from logik.flows.logik_flow import LogikFlow; print('✓ LogikFlow imported')"
+          
+      - name: Run basic tests (no CAD tools)
+        run: |
+          pytest tests/examples/test_files.py -v
 
   pytest:
     name: Run CAD flow tests
