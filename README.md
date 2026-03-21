@@ -35,7 +35,7 @@ python -m pip install --upgrade logik
 All open source FPGA pre-requisites can be installed via the SiliconCompiler `sc-install` utility.
 
 ```sh
-sc-install -group fpga opensta
+sc-install -group fpga
 ```
 
 The following example illustrate some essential Logik features. For complete documentation of all options available, see the [SiliconCompiler project](https://github.com/siliconcompiler/siliconcompiler/blob/main/README.md).
@@ -51,35 +51,35 @@ design = siliconcompiler.Design('adder')
 design.add_file('adder.v', fileset="rtl")
 design.set_topmodule('adder', fileset="rtl")
 
-# 2. Create an FPGA project
+# Create an FPGA project
 project = siliconcompiler.FPGA(design)
 
-# 3. Assign file sets to use for elaboration
+# Assign file sets to use for elaboration
 project.add_fileset('rtl')
 
-# 4. Select the rtl2bits flow to use
+# Select the rtl2bits flow to use
 project.set_flow(LogikFlow())
 
-# 5. Load FPGA part settings and associated flow and libraries.
+# Load FPGA part settings and associated flow and libraries.
 project.set_fpga(z1000.z1000())
 
-# 6. User defined options
+# User defined options
 project.option.set_quiet(True)
 
-# 7. Run compilatin
+# Run compilation
 project.run()
 
-#6. Display summary of results
+# Display summary of results
 project.summary()
 
 ```
 
 > [!NOTE]
-> The required files can be found at: [heartbeat example](https://github.com/siliconcompiler/logik/tree/main/examples/adder)
+> The required files can be found [here](https://github.com/siliconcompiler/logik/tree/main/examples/adder)
 
 ## Examples
 
-* [Ethernet](./examples/eth_mac_1g/eth_mac_1g.py): Ethernet MAC compiled for the `z1000` architecture
+* [Ethernet](./examples/eth_mac_1g/eth_mac_1g.py): Ethernet MAC compiled for the `z1000` architecture.
 * [Adder](examples/adder/adder.py): Small adder example compiled for the `z1000` architecture.
 * [Picorv32](examples/picorv32/picorv32.py): picorv32 RISC-V CPU example compiled for the `z1062` architecture.
 
@@ -101,9 +101,8 @@ Running natively on your local machine will require installing a number of prere
 
 * [Silicon Compiler](https://github.com/siliconcompiler/siliconcompiler): Hardware compiler framework
 * [Slang](https://github.com/MikePopoloski/slang): SystemVerilog Parser
-* [GHDL](https://ghdl.github.io/ghdl/): VHDL parser
 * [Yosys](https://github.com/YosysHQ/yosys): Logic synthesis platform
-* [Wildebeest](https://github.com/zeroasiccorp/wildebeest): High performance synthesis yosys plugin
+* [Wildebeest](https://github.com/zeroasiccorp/wildebeest): High-performance synthesis yosys plugin
 * [VPR](https://github.com/verilog-to-routing/vtr-verilog-to-routing): FPGA place and route
 * [FASM](https://github.com/chipsalliance/fasm): FPGA assembly parser and generator
 * [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA): Production grade static timing analysis engine
