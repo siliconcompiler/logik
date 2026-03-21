@@ -5,7 +5,7 @@ Logik
 [![Lint](https://github.com/siliconcompiler/logik/actions/workflows/lint.yml/badge.svg)](https://github.com/siliconcompiler/logik/actions/workflows/lint.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Logik is an open source FPGA tool chain with support for high level language parsing, synthesis, placement, routing, bit-stream generation, and analysis. Users enter design sources, constraints, and compile options through a simple [SiliconCompiler](https://github.com/siliconcompiler/siliconcompiler/) Python API. Once setup is complete, automated compilation can be initiated with a single line run command. Logik relies on the [Logiklib](https://github.com/siliconcompiler/logiklib) project for all architecture and device descriptions.
+Logik is an open source FPGA tool chain with support for high level language parsing, synthesis, placement, routing, bitstream generation, and analysis. Users enter design sources, constraints, and compile options through a simple [SiliconCompiler](https://github.com/siliconcompiler/siliconcompiler/) Python API. Once setup is complete, automated compilation can be initiated with a single line run command. Logik relies on the [Logiklib](https://github.com/siliconcompiler/logiklib) project for all architecture and device descriptions.
 
 ![logik_flow](images/logik-plus-open-sta-flow.png)
 
@@ -38,7 +38,7 @@ All open source FPGA pre-requisites can be installed via the SiliconCompiler `sc
 sc-install -group fpga
 ```
 
-The following example illustrate some essential Logik features. For complete documentation of all options available, see the [SiliconCompiler project](https://github.com/siliconcompiler/siliconcompiler/blob/main/README.md).
+The following example illustrates some essential Logik features. For complete documentation of all options available, see the [SiliconCompiler project](https://github.com/siliconcompiler/siliconcompiler/blob/main/README.md).
 
 ```python
 
@@ -105,7 +105,7 @@ Running natively on your local machine will require installing a number of prere
 * [Wildebeest](https://github.com/zeroasiccorp/wildebeest): High-performance synthesis yosys plugin
 * [VPR](https://github.com/verilog-to-routing/vtr-verilog-to-routing): FPGA place and route
 * [FASM](https://github.com/chipsalliance/fasm): FPGA assembly parser and generator
-* [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA): Production grade static timing analysis engine
+* [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA): Production-grade static timing analysis engine
 
 We recommend using the SiliconCompiler `sc-install` utility to automatically install the correct versions of all open source FPGA tool dependencies.
 
@@ -118,7 +118,7 @@ Detailed installation instructions can be found in the [SiliconCompiler Installa
 
 ## License
 
-The Logik project is licensed under the open source [Apache License 2.0](LICENSE). For licensing terms of all dependencies, visit depedency repository.
+The Logik project is licensed under the open source [Apache License 2.0](LICENSE). For licensing terms of all dependencies, visit dependency repository.
 
 ## Issues / Bugs
 We use [GitHub Issues](https://github.com/siliconcompiler/logik/issues) for tracking requests and bugs.
