@@ -110,7 +110,7 @@ Running natively on your local machine will require installing a number of prere
 We recommend using the SiliconCompiler `sc-install` utility to automatically install the correct versions of all open source FPGA tool dependencies.
 
 ```sh
-sc-install -group fpga opensta
+sc-install -group fpga
 ```
 
 Detailed installation instructions can be found in the [SiliconCompiler Installation Guide](https://docs.siliconcompiler.com/en/stable/user_guide/installation.html#external-tools).
