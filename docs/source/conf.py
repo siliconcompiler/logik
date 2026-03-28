@@ -6,9 +6,9 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import datetime
 import os
 import sys
-from datetime import date
 
 sys.path.insert(0, os.path.abspath("../.."))
 
@@ -19,7 +19,7 @@ import logik  # noqa E402
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "Logik"
-copyright = f"2024-{date.today().year}, Zero ASIC"
+copyright = f"2024-{datetime.datetime.now(tz=datetime.timezone.utc).date().year}, Zero ASIC"
 author = "Zero ASIC"
 release = logik.__version__
 

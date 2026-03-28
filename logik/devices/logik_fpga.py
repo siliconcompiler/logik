@@ -11,6 +11,6 @@ class LogikFPGA(YosysFPGA, VPRFPGA, OpenSTAFPGA):
     def __init__(self) -> None:
         super().__init__()
 
-    def set_convert_bitstream_bitstream_map(self, file: str, dataroot: str = None):
+    def set_convert_bitstream_bitstream_map(self, file: str, dataroot: str | None = None):
         with self.active_dataroot(self._get_active_dataroot(dataroot)):
             return self.set("tool", "convert_bitstream", "bitstream_map", file)

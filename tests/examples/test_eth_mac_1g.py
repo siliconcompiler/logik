@@ -23,6 +23,6 @@ def test_cli(setup_example_test):
     eth_mac_1g_dir = setup_example_test("eth_mac_1g")
 
     proc = subprocess.run(
-        [os.path.join(eth_mac_1g_dir, "eth_mac_1g.py")], cwd=eth_mac_1g_dir
+        [os.path.join(eth_mac_1g_dir, "eth_mac_1g.py")], cwd=eth_mac_1g_dir, check=False
     )
     assert proc.returncode == 0

@@ -2,10 +2,6 @@
 
 from logik.devices.logik_fpga import LogikFPGA
 
-# ####################################################
-# # Setup for z1000 FPGA
-# ####################################################
-
 
 class z1000(LogikFPGA):
     """
