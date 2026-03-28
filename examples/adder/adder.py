@@ -4,24 +4,23 @@
 # Licensed under the MIT License (see LICENSE for details)
 
 import siliconcompiler
+from logiklib.zeroasic.z1000 import z1000
 
 from logik.flows.logik_flow import LogikFlow
-
-from logiklib.zeroasic.z1000 import z1000
 
 
 def hello_adder():
     # Create a Design object to hold source files and constraints.
-    design = siliconcompiler.Design('adder')
+    design = siliconcompiler.Design("adder")
 
-    design.add_file('adder.v', fileset="rtl")
-    design.set_topmodule('adder', fileset="rtl")
+    design.add_file("adder.v", fileset="rtl")
+    design.set_topmodule("adder", fileset="rtl")
 
     # Create an FPGA object with a -remote command line option
-    project = siliconcompiler.FPGA.create_cmdline(switchlist=['-remote'])
+    project = siliconcompiler.FPGA.create_cmdline(switchlist=["-remote"])
     project.set_design(design)
 
-    project.add_fileset('rtl')
+    project.add_fileset("rtl")
 
     # Create an FPGA object and associate the design with it.
     fpga = z1000.z1000()
