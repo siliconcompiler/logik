@@ -148,31 +148,6 @@ def concatenate_data(data_array) -> int:
     return data_sum
 
 
-def get_bitstream_map_location(
-    base_address,
-    umi_addr_offset,
-    umi_column_index,
-    config_words_per_address,
-    umi_addresses_per_row,
-    num_bitstream_columns,
-    num_bitstream_rows,
-    max_bitstream_address,
-    bitstream_size,
-    reverse=False,
-) -> tuple[Any, Any, Any]:
-
-    base_position = base_address / config_words_per_address / umi_addresses_per_row
-    y = math.floor(base_position / max_bitstream_address)
-    x = config_words_per_address * umi_addr_offset + umi_column_index
-    addr = int(base_position) % max_bitstream_address
-
-    if reverse:
-        y = num_bitstream_rows - y - 1
-        addr = max_bitstream_address - addr - 1
-
-    return x, y, addr
-
-
 def format_binary_bitstream(bitstream_data, word_size=8) -> ndarray[Any, dtype]:
 
     converted_data = []
@@ -191,15 +166,14 @@ def format_binary_bitstream(bitstream_data, word_size=8) -> ndarray[Any, dtype]:
 
 
 def fasm2bitstream(
-    fasm_file, bitstream_map_file, verbose=False, fasm_warnings=False
-) -> list[list[list[list[int]]]]:
+    fasm_file, bitstream_map_file) -> list[list[list[list[int]]]]:
 
     with open(bitstream_map_file, "r") as map_file:
         json_bitstream_map = json.load(map_file)
         bitstream_map = json_bitstream_map["bitstream"]
 
     fasm_features = load_fasm_data(
-        fasm_file, all_warnings=fasm_warnings, verbose=verbose
+        fasm_file
     )
 
     config_bitstream = generate_bitstream_from_fasm(bitstream_map, fasm_features)
@@ -207,7 +181,7 @@ def fasm2bitstream(
     return config_bitstream
 
 
-def load_fasm_data(filename, all_warnings=False, verbose=False) -> list[str]:
+def load_fasm_data(filename) -> list[str]:
     with open(filename, "r") as fasm_file:
         fasm_feature_list = fasm_file.readlines()
 
@@ -272,7 +246,7 @@ def load_fasm_data(filename, all_warnings=False, verbose=False) -> list[str]:
 
 
 def generate_bitstream_from_fasm(
-    address_map, fasm_data, verbose=False
+    address_map, fasm_data,
 ) -> list[list[list[list[int]]]]:
 
     feature_index = invert_address_map(address_map)
