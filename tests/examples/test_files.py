@@ -2,7 +2,6 @@
 # Licensed under the MIT License (see LICENSE for details)
 
 import siliconcompiler
-
 from data.z1000 import z1000
 
 

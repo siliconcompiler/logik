@@ -4,10 +4,9 @@
 # Licensed under the MIT License (see LICENSE for details)
 
 import siliconcompiler
+from logiklib.zeroasic.z1000 import z1000
 
 from logik.flows.logik_flow import LogikFlow
-
-from logiklib.zeroasic.z1000 import z1000
 
 
 def hello_adder():

@@ -1,6 +1,6 @@
+from siliconcompiler.tools.opensta import OpenSTAFPGA
 from siliconcompiler.tools.vpr import VPRFPGA
 from siliconcompiler.tools.yosys import YosysFPGA
-from siliconcompiler.tools.opensta import OpenSTAFPGA
 
 
 class LogikFPGA(YosysFPGA, VPRFPGA, OpenSTAFPGA):

@@ -5,11 +5,12 @@
 
 import json
 import math
-import numpy as np
 import re
 import sys
-from numpy import dtype, ndarray
 from typing import Any
+
+import numpy as np
+from numpy import dtype, ndarray
 
 
 def main() -> None:

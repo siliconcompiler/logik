@@ -4,10 +4,9 @@
 # with Alex Forencich's 1G Ethernet MAC
 
 import siliconcompiler
+from logiklib.zeroasic.z1000 import z1000
 
 from logik.flows.logik_flow import LogikFlow
-
-from logiklib.zeroasic.z1000 import z1000
 
 
 def build():

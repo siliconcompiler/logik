@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
 import siliconcompiler
+from logiklib.zeroasic.z1062 import z1062
 from siliconcompiler.tools import get_task
 from siliconcompiler.tools.yosys.syn_fpga import FPGASynthesis
-
-from logiklib.zeroasic.z1062 import z1062
 
 from logik.flows.logik_flow import LogikFlow
 

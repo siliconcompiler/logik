@@ -1,11 +1,10 @@
 # Copyright 2024 Zero ASIC Corporation
 # Licensed under the MIT License (see LICENSE for details)
 
-import siliconcompiler
-
 import os
 
 import pytest
+import siliconcompiler
 
 
 @pytest.fixture
