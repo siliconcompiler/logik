@@ -35,7 +35,6 @@ class BitstreamFinishTask(Task):
         fpga = self.project.get("fpga", "device")
         fpga_obj = self.project.get("library", fpga, field="schema")
 
-
         fasm_file = f"inputs/{self.design_topmodule}.fasm"
 
         bitstream_map = fpga_obj.find_files(
