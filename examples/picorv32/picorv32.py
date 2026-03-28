@@ -2,7 +2,6 @@
 
 import siliconcompiler
 from logiklib.zeroasic.z1062 import z1062
-from siliconcompiler.tools import get_task
 from siliconcompiler.tools.yosys.syn_fpga import FPGASynthesis
 
 from logik.flows.logik_flow import LogikFlow
@@ -47,7 +46,7 @@ def build():
     project.set_flow(LogikFlow())
 
     # set synthesis mode to 'delay'
-    get_task(project, filter=FPGASynthesis).set("var", "synth_opt_mode", "delay")
+    FPGASynthesis.find_task(project=project).set_yosys_synthoptmode("delay")
 
     # Customize steps for this design
     project.option.set_quiet(True)

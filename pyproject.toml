@@ -48,3 +48,6 @@ timeout = "180"
 markers = [
     "quick: always run this test on push"
 ]
+filterwarnings = [
+    "ignore::DeprecationWarning:pip._internal"
+]

@@ -24,8 +24,7 @@ class BitstreamFinishTask(Task):
 
         fpga = self.project.get("fpga", "device")
         fpga_obj = self.project.get("library", fpga, field="schema")
-        # dd_required_key(...) you can pass in an object the fpga and then finish the keypath
-        # but this will need to be "tool", "???", "bitstream_map"
+
         self.add_required_key(fpga_obj, "tool", "convert_bitstream", "bitstream_map")
 
         self.add_input_file(ext="fasm")
@@ -36,7 +35,7 @@ class BitstreamFinishTask(Task):
         fpga = self.project.get("fpga", "device")
         fpga_obj = self.project.get("library", fpga, field="schema")
 
-        # topmodule = self.top()
+
         fasm_file = f"inputs/{self.design_topmodule}.fasm"
 
         bitstream_map = fpga_obj.find_files(

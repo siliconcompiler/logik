@@ -36,6 +36,5 @@ class LogikFlow(fpgaflow.FPGAVPROpenSTAFlow):
         self.edge("bitstream", "convert_bitstream")
 
 
-# ##################################################
 if __name__ == "__main__":
     LogikFlow().write_flowgraph(f"{LogikFlow().name}.png")
