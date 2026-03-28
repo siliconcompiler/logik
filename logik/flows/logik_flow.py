@@ -22,7 +22,7 @@ class LogikFlow(fpgaflow.FPGAVPROpenSTAFlow):
     * **bitstream**: Generate the final bitstream using GenFasm.
     * **convert_bitstream**: Format bitstream from fasm to bits.
     '''
-    def __init__(self, name: str = "logik_flow"):
+    def __init__(self, name: str = "logik_flow") -> None:
         """
         Initializes the FPGAVPRFlow.
 

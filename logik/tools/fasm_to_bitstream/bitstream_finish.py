@@ -8,16 +8,16 @@ from siliconcompiler.tool import Task
 
 
 class BitstreamFinishTask(Task):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
-    def tool(self):
+    def tool(self) -> str:
         return "fasm_to_bitstream"
 
-    def task(self):
+    def task(self) -> str:
         return "bitstream_finish"
 
-    def setup(self):
+    def setup(self) -> None:
         '''
         Perform bitstream finishing
         '''
@@ -33,7 +33,7 @@ class BitstreamFinishTask(Task):
         self.add_output_file(ext="json")
         self.add_output_file(ext="bin")
 
-    def run(self):
+    def run(self) -> int:
         fpga = self.project.get('fpga', 'device')
         fpga_obj = self.project.get('library', fpga, field='schema')
 

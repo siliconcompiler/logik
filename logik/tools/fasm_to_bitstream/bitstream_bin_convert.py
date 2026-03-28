@@ -6,7 +6,7 @@
 import argparse
 
 
-def main():
+def main() -> None:
 
     option_parser = argparse.ArgumentParser()
 
