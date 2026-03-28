@@ -19,7 +19,9 @@ import logik  # noqa E402
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "Logik"
-copyright = f"2024-{datetime.datetime.now(tz=datetime.timezone.utc).date().year}, Zero ASIC"
+copyright = (
+    f"2024-{datetime.datetime.now(tz=datetime.timezone.utc).date().year}, Zero ASIC"
+)
 author = "Zero ASIC"
 release = logik.__version__
 

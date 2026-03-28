@@ -22,5 +22,7 @@ def test_py(setup_example_test, monkeypatch):
 def test_cli(setup_example_test):
     picorv32_dir = setup_example_test("picorv32")
 
-    proc = subprocess.run([os.path.join(picorv32_dir, "picorv32.py")], cwd=picorv32_dir, check=False)
+    proc = subprocess.run(
+        [os.path.join(picorv32_dir, "picorv32.py")], cwd=picorv32_dir, check=False
+    )
     assert proc.returncode == 0
