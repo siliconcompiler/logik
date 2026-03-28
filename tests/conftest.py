@@ -15,9 +15,9 @@ def setup_example_test(monkeypatch):
     similar efficiency.  See Silicon Compiler documentation for details
     """
 
-    def setup(dir):
+    def setup(directory):
         cad_root = ebrick_fpga_cad_root()
-        ex_dir = os.path.join(cad_root, "examples", dir)
+        ex_dir = os.path.join(cad_root, "examples", directory)
 
         def _mock_show(chip, filename=None, screenshot=False):
             pass
@@ -33,6 +33,4 @@ def setup_example_test(monkeypatch):
 
 
 def ebrick_fpga_cad_root():
-    cur_dir = os.path.abspath(__file__).replace("/conftest.py", "")
-    root_dir = cur_dir.replace("/tests", "")
-    return root_dir
+    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
