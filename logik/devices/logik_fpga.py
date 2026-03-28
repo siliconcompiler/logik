@@ -4,9 +4,10 @@ from siliconcompiler.tools.opensta import OpenSTAFPGA
 
 
 class LogikFPGA(YosysFPGA, VPRFPGA, OpenSTAFPGA):
-    '''
+    """
     Class for logik FPGA devices
-    '''
+    """
+
     def __init__(self) -> None:
         super().__init__()
 

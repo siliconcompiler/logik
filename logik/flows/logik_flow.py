@@ -7,7 +7,7 @@ from logik.tools.fasm_to_bitstream import bitstream_finish
 
 
 class LogikFlow(fpgaflow.FPGAVPROpenSTAFlow):
-    '''An open-source FPGA flow using Yosys, VPR, and GenFasm.
+    """An open-source FPGA flow using Yosys, VPR, and GenFasm.
 
     This flow is designed for academic and research FPGAs, utilizing VPR
     (Versatile Place and Route) for placement and routing.
@@ -21,7 +21,8 @@ class LogikFlow(fpgaflow.FPGAVPROpenSTAFlow):
     * **timing**: Perform static analysis using OpenSTA.
     * **bitstream**: Generate the final bitstream using GenFasm.
     * **convert_bitstream**: Format bitstream from fasm to bits.
-    '''
+    """
+
     def __init__(self, name: str = "logik_flow") -> None:
         """
         Initializes the FPGAVPRFlow.
