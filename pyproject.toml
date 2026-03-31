@@ -25,6 +25,9 @@ dynamic = ["version"]
 [tool.setuptools.dynamic]
 version = {attr = "logik.__version__"}
 
+[project.scripts]
+logik = "logik.cli:run_logik"
+
 [project.optional-dependencies]
 test = [
     "pytest == 9.0.2",
