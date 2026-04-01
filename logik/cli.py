@@ -12,6 +12,8 @@ from logik import __version__
 from logik.flows.logik_flow import LogikFlow
 
 # TODO error/warning coloring fixes
+# TODO threads
+# TODO multiple sources, sdcs, only one pcf
 
 
 def setup_logik(
@@ -59,8 +61,6 @@ def setup_logik(
 
     project.set_flow(LogikFlow())
 
-    # TODO Set threads
-
     return project
 
 
@@ -84,8 +84,8 @@ def run_logik():
     parser.add_argument(
         "-pcf", "--pin-constraints", type=str, help="Path to the PCF file(s)."
     )
-    parser.add_argument("-arch", "--arch", help="Path to the architecture file(s).")
-    # TODO autoset
+    parser.add_argument("-arch", "--arch", type=str, help="Path to the architecture file(s).")
+
     parser.add_argument(
         "--top",
         "--topmodule",
@@ -128,27 +128,29 @@ def run_logik():
 
     project.summary()
 
-    # print fmax, area
-
 
 def print_dep_versions():
     print(f"siliconcompiler version: {siliconcompiler.__version__}")
     print(f"logiklib version: {logiklib.__version__}")
-    print(
-        f"yosys version {subprocess.run(['yosys', '--version'], capture_output=True, text=True).stdout.strip()}"
-    )
+    yosys_output = subprocess.run(
+        ['yosys', '--version'], capture_output=True, text=True
+    ).stdout.strip()
+    print(f"yosys version {yosys_output}")
     output = subprocess.run(["vpr", "--version"], capture_output=True, text=True)
     full_output = output.stdout + output.stderr
     version = re.search(r"Version:\s*(\S+)", full_output).group(1)
     print(f"vpr version: {version}")
-    print(
-        f"opensta version: {subprocess.run(['sta', '-version'], capture_output=True, text=True).stdout.strip()}"
-    )
+    opensta_output = subprocess.run(
+        ['sta', '-version'], capture_output=True, text=True
+    ).stdout.strip()
+    print(f"opensta version: {opensta_output}")
 
 
 def validate_args(args):
     if not args.verilog:
-        print("Error: At least one Verilog source file must be specified with -v or --verilog.")
+        print(
+            "Error: At least one Verilog source file must be specified with -v or --verilog."
+        )
         sys.exit(1)
     if not args.arch:
         print("Error: Architecture must be specified with -arch or --arch.")
