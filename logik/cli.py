@@ -105,6 +105,11 @@ def run_logik():
         default=1,
         help="Number of threads to use for parallel execution. 0 for auto.",
     )
+
+    if len(sys.argv) == 1:
+        parser.print_help()
+        return
+
     args = parser.parse_args()
 
     if args.version or args.dep_versions:
