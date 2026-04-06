@@ -71,6 +71,7 @@ jobs:
       - name: Setup git access
         run: |
           git config --global --add url."https://github.com/".insteadOf git@github.com:
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Setup python
         run: |
