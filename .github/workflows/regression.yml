@@ -20,6 +20,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v6
@@ -39,6 +41,8 @@ jobs:
           python -c "from logik.flows.logik_flow import LogikFlow; print('✓ LogikFlow imported')"
 
       - name: Run basic tests (no CAD tools)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pytest tests/examples/test_files.py -v
 
@@ -71,6 +75,7 @@ jobs:
       - name: Setup git access
         run: |
           git config --global --add url."https://github.com/".insteadOf git@github.com:
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Setup python
         run: |
