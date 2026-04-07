@@ -13,8 +13,8 @@ def test_py(setup_example_test, monkeypatch):
 
     monkeypatch.chdir(adder_dir)
     # create_cmdline() parses sys.argv directly; without this, pytest's own
-    # arguments leak in and cause argparse to exit with an error.
-    monkeypatch.setattr('sys.argv', ['adder.py', '-remote'])
+    # arguments (e.g. -v matching argparse's -version prefix) cause it to exit.
+    monkeypatch.setattr('sys.argv', ['adder.py'])
 
     import adder
     adder.hello_adder()
