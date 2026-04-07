@@ -41,6 +41,8 @@ jobs:
           python -c "from logik.flows.logik_flow import LogikFlow; print('✓ LogikFlow imported')"
 
       - name: Run basic tests (no CAD tools)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pytest tests/examples/test_files.py -v
 
