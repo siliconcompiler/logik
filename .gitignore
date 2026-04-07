@@ -165,5 +165,3 @@ cython_debug/
 # Switchboard
 *.q
 
-# scm
-logik/_version.py
