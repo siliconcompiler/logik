@@ -1,46 +1,45 @@
 # Copyright 2024 Zero ASIC Corporation
 # Licensed under the MIT License (see LICENSE for details)
 
-from logik.tools.fasm_to_bitstream import \
-    fasm_to_bitstream as fasm_utils
-
 from siliconcompiler.tool import Task
+
+from logik.tools.fasm_to_bitstream import fasm_to_bitstream as fasm_utils
 
 
 class BitstreamFinishTask(Task):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
-    def tool(self):
+    def tool(self) -> str:
         return "fasm_to_bitstream"
 
-    def task(self):
+    def task(self) -> str:
         return "bitstream_finish"
 
-    def setup(self):
-        '''
+    def setup(self) -> None:
+        """
         Perform bitstream finishing
-        '''
+        """
         super().setup()
 
-        fpga = self.project.get('fpga', 'device')
-        fpga_obj = self.project.get('library', fpga, field='schema')
-        # dd_required_key(...) you can pass in an object the fpga and then finish the keypath
-        # but this will need to be "tool", "???", "bitstream_map"
-        self.add_required_key(fpga_obj, "tool", 'convert_bitstream', 'bitstream_map')
+        fpga = self.project.get("fpga", "device")
+        fpga_obj = self.project.get("library", fpga, field="schema")
+
+        self.add_required_key(fpga_obj, "tool", "convert_bitstream", "bitstream_map")
 
         self.add_input_file(ext="fasm")
         self.add_output_file(ext="json")
         self.add_output_file(ext="bin")
 
-    def run(self):
-        fpga = self.project.get('fpga', 'device')
-        fpga_obj = self.project.get('library', fpga, field='schema')
+    def run(self) -> int:
+        fpga = self.project.get("fpga", "device")
+        fpga_obj = self.project.get("library", fpga, field="schema")
 
-        # topmodule = self.top()
         fasm_file = f"inputs/{self.design_topmodule}.fasm"
 
-        bitstream_map = fpga_obj.find_files("tool", 'convert_bitstream', 'bitstream_map')
+        bitstream_map = fpga_obj.find_files(
+            "tool", "convert_bitstream", "bitstream_map"
+        )
 
         json_outfile = f"outputs/{self.design_topmodule}.json"
         binary_outfile = f"outputs/{self.design_topmodule}.bin"

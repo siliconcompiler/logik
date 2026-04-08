@@ -3,24 +3,28 @@
 from logik.devices.logik_fpga import LogikFPGA
 
 
-# ####################################################
-# # Setup for z1000 FPGA
-# ####################################################
-
 class z1000(LogikFPGA):
-    '''
+    """
     Logik driver for z1000
-    '''
+    """
+
     def __init__(self):
         super().__init__()
         part_name = "z1000"
         self.set_name(part_name)
 
-        self.define_tool_parameter('convert_bitstream', 'bitstream_map', 'file',
-                                   'map for fasm->bitstream conversion')
+        self.define_tool_parameter(
+            "convert_bitstream",
+            "bitstream_map",
+            "file",
+            "map for fasm->bitstream conversion",
+        )
 
         self.set_dataroot(
-            part_name, f"github://siliconcompiler/logiklib/v0.1.0/{part_name}_cad.tar.gz", "0.1.0")
+            part_name,
+            f"github://siliconcompiler/logiklib/v0.1.0/{part_name}_cad.tar.gz",
+            "0.1.0",
+        )
 
         self.package.set_vendor("ZeroASIC")
         self.set_lutsize(4)
@@ -40,6 +44,6 @@ class z1000(LogikFPGA):
             self.set_vpr_constraintsmap("cad/z1000_constraint_map.json")
 
         with self.active_dataroot(part_name):
-            self.set_convert_bitstream_bitstream_map('cad/z1000_bitstream_map.json')
+            self.set_convert_bitstream_bitstream_map("cad/z1000_bitstream_map.json")
 
         self.set_vpr_router_lookahead("classic")
