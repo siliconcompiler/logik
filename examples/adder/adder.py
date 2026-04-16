@@ -13,8 +13,10 @@ def hello_adder():
     # Create a Design object to hold source files and constraints.
     design = siliconcompiler.Design("adder")
 
-    design.add_file("adder.v", fileset="rtl")
-    design.set_topmodule("adder", fileset="rtl")
+    design.set_dataroot("adder", __file__)
+    with design.active_dataroot("adder"):
+        design.add_file("adder.v", fileset="rtl")
+        design.set_topmodule("adder", fileset="rtl")
 
     # Create an FPGA object with a -remote command line option
     project = siliconcompiler.FPGA.create_cmdline(switchlist=["-remote"])
