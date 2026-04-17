@@ -15,20 +15,19 @@ General Purpose Software Requirements
 
 The following general purpose software must be installed on your system to use this flow:
 
-* Python 3.8 or higher
+* Python 3.10 or higher
 * git
 
 Required EDA Software Tools
 ---------------------------
 
 * Silicon Compiler
-* Surelog
 * Yosys
 * VPR
 
-For VHDL support, GHDL is also required
+For VHDL support, GHDL is also required.
 
-For SystemVerilog support, sv2v is also required.
+For SystemVerilog support, slang is also required.
 
 For links to all EDA software Github repositories and documentation pages, please consult the :doc:`external_links`.
 
@@ -42,8 +41,9 @@ Either of the following open-source simulators may be used for HDL simulation:
 * Icarus Verilog
 * Verilator
   
-For waveform viewing, GTKWave is an available open source viewer:
+For waveform viewing, there are a few open source viewers to choose from:
 
+* Surfer
 * GTKWave
   
 For links to all EDA software Github repositories and documentation pages, please consult the :doc:`external_links`.

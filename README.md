@@ -91,7 +91,7 @@ project.summary()
 
 ## Installation
 
-Logik is available as wheel packages on PyPI for macOS, Windows and Linux platforms. For a Python 3.8-3.12 environment, just use pip to install.
+Logik is available as wheel packages on PyPI for macOS, Windows and Linux platforms. For working Python >= 3.10 environments, just use `pip` to install.
 
 ```sh
 python -m pip install --upgrade logik
