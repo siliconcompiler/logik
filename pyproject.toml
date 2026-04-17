@@ -36,13 +36,13 @@ __base_version__ = "{scm_version.tag}"
 [project.optional-dependencies]
 test = [
     "pytest == 9.0.3",
-    "pytest-timeout >= 2.0.0",
-    "flake8 >= 7.3.0"
+    "pytest-timeout == 2.0.0",
+    "flake8 == 7.3.0"
 ]
 docs = [
-    "Sphinx >= 6.0.0",
-    "sphinx-rtd-theme >= 1.0.0",
-    "autodocsumm >= 0.2.14"
+    "Sphinx == 6.0.0",
+    "sphinx-rtd-theme == 1.0.0",
+    "autodocsumm == 0.2.14"
 ]
 
 [tool.setuptools]
