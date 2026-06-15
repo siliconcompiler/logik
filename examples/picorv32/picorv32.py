@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import siliconcompiler
-from logiklib.zeroasic.z1062 import z1062
+from logiklib.zeroasic.z1015 import z1015
 from siliconcompiler.tools.yosys.syn_fpga import FPGASynthesis
 
 from logik.flows.logik_flow import LogikFlow
@@ -31,7 +31,7 @@ def build():
         design.add_file(f"{module_name}.sdc", fileset="sdc")
 
         # Define pin constraints
-        design.add_file(f"constraints/z1062/{module_name}.pcf", fileset="pcf")
+        design.add_file(f"constraints/z1015/{module_name}.pcf", fileset="pcf")
 
     project = siliconcompiler.FPGA(design)
 
@@ -40,7 +40,7 @@ def build():
     project.add_fileset("sdc")
     project.add_fileset("pcf")
 
-    fpga = z1062.z1062()
+    fpga = z1015.z1015()
     project.set_fpga(fpga)
 
     project.set_flow(LogikFlow())
