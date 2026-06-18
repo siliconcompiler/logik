@@ -48,10 +48,8 @@ def build():
     # set synthesis mode to 'delay'
     FPGASynthesis.find_task(project=project).set_yosys_synthoptmode("delay")
 
-    # Apply z1015-specific VPR task configuration (disable the graphics dump that
-    # segfaults on the clock-only pb_graph_node; force a dijkstra-built DELTA
-    # placement delay model). Must run after set_flow() so the tasks exist.
-    z1015.configure_vpr(project)
+    # NOTE: the VPR graphics-dump workaround (formerly z1015.configure_vpr) is
+    # now baked into LogikFlow, so no per-project VPR configuration is needed.
 
     # Customize steps for this design
     project.option.set_quiet(True)
