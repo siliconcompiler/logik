@@ -29,6 +29,8 @@ class LogikRouteTask(RouteTask):
     image is only a debug artifact, so the Logik flow disables it for every
     part. Parts that never hit the crash are unaffected -- they simply skip a
     layout image they did not depend on.
+    This issue will be resolved in future releases of VPR that will be paired with
+    future releases of Logik.
     """
 
     def __init__(self) -> None:
@@ -53,8 +55,7 @@ class LogikFlow(fpgaflow.FPGAVPROpenSTAFlow):
     * **convert_bitstream**: Format bitstream from fasm to bits.
 
     The VPR place and route steps run with the design-image dump disabled (see
-    :class:`LogikRouteTask`); previously this was applied per-project by the
-    z1015 part driver's ``configure_vpr`` helper.
+    :class:`LogikRouteTask`).
     """
 
     def __init__(self, name: str = "logik_flow") -> None:

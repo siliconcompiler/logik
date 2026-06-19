@@ -48,9 +48,6 @@ def build():
     # set synthesis mode to 'delay'
     FPGASynthesis.find_task(project=project).set_yosys_synthoptmode("delay")
 
-    # NOTE: the VPR graphics-dump workaround (formerly z1015.configure_vpr) is
-    # now baked into LogikFlow, so no per-project VPR configuration is needed.
-
     # Customize steps for this design
     project.option.set_quiet(True)
 
