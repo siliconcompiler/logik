@@ -15,7 +15,7 @@ urls = {Homepage = "https://github.com/siliconcompiler/logik"}
 requires-python = ">= 3.10"
 dependencies = [
     # Use ~= to allow users to pull in bug fixes and compatible future releases (>= current, < next minor)
-    "logiklib ~= 0.2.0",
+    "logiklib ~= 0.3.0",
     "siliconcompiler ~= 0.37.2"
 ]
 
