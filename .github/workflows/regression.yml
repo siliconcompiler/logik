@@ -19,7 +19,7 @@ jobs:
         resolution: ["highest", "lowest-direct"]
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -57,7 +57,7 @@ jobs:
       GIT_TOKEN: ${{ secrets.ZA_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Setup permissions
         run: |
