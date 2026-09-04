@@ -6,6 +6,11 @@ on:
     types:
       - published
 
+# The repository default is write-all. Default every job to read-only and let
+# the two jobs that need to write grant themselves exactly one scope below.
+permissions:
+  contents: read
+
 jobs:
   build_wheels:
     name: Wheels
@@ -22,7 +27,10 @@ jobs:
   publish:
     needs: [build_wheels]
     runs-on: ubuntu-latest
+    # Trusted publishing needs the OIDC token and nothing else; downloading a
+    # same-run artifact uses the Actions runtime token, not GITHUB_TOKEN.
     permissions:
+      contents: none
       id-token: write
     if: github.event_name == 'release' && github.event.action == 'published'
 
@@ -39,6 +47,7 @@ jobs:
     needs: [publish]
     runs-on: ubuntu-latest
 
+    # Uploading release assets is the only write this workflow performs.
     permissions:
       contents: write
 
