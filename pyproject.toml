@@ -16,6 +16,7 @@ requires-python = ">= 3.10"
 dependencies = [
     # Use ~= to allow users to pull in bug fixes and compatible future releases (>= current, < next minor)
     "logiklib ~= 0.3.0",
+    "numpy >= 2.2.6",
     "siliconcompiler >= 0.37.2,< 0.39.0"
 ]
 
@@ -37,7 +38,7 @@ __base_version__ = "{scm_version.tag}"
 test = [
     "pytest == 9.1.1",
     "pytest-timeout == 2.4.0",
-    "flake8 == 7.3.0"
+    "flake8 == 7.4.1"
 ]
 docs = [
     "Sphinx == 8.1.3",
